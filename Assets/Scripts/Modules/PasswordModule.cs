@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,8 +8,13 @@ public class PasswordModule : IModule
     private string mSolution = String.Empty;
     private string mEntered  = String.Empty;
 
+    private TextMeshProUGUI mTextDisplay;
+
     private void Start()
     {
+        mTextDisplay = GetComponentInChildren<TextMeshProUGUI>();
+        mTextDisplay.text = "";
+
         foreach (ModuleButton button in GetComponentsInChildren<ModuleButton>())
         {
             button.OnButtonPressedEvent += OnButtonPressed;
@@ -63,5 +69,7 @@ public class PasswordModule : IModule
         }
 
         mEntered += buttonId;
+
+        mTextDisplay.text = mEntered;
     }
 }
