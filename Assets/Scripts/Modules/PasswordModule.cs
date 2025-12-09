@@ -1,6 +1,7 @@
-using System;
 using TMPro;
+using System;
 using UnityEngine;
+
 using Random = UnityEngine.Random;
 
 public class PasswordModule : IModule
@@ -10,10 +11,18 @@ public class PasswordModule : IModule
 
     private TextMeshProUGUI mTextDisplay;
 
+    [Header("Light")]
+    [SerializeField]
+    private Transform mLightTransform;
+    [SerializeField]
+    private Material mPassedMaterial;
+    [SerializeField]
+    private Material mFailedMaterial;
+
     private void Start()
     {
         mTextDisplay = GetComponentInChildren<TextMeshProUGUI>();
-        mTextDisplay.text = "";
+        SetEnteredText(String.Empty);
 
         foreach (ModuleButton button in GetComponentsInChildren<ModuleButton>())
         {
@@ -36,6 +45,18 @@ public class PasswordModule : IModule
         }
     }
 
+    protected override void OnPassed(object sender, EventArgs args)
+    {
+        mLightTransform.GetComponent<MeshRenderer>().material = mPassedMaterial;
+        SetEnteredText(String.Empty);
+
+    }
+    protected override void OnFailed(object sender, EventArgs args)
+    {
+        mLightTransform.GetComponent<MeshRenderer>().material = mFailedMaterial;
+        SetEnteredText(String.Empty);
+    }
+
     private void OnButtonPressed(object sender, int buttonId)
     {
         Debug.Log("Button pressed: " + buttonId + " - entered: " + mEntered);
@@ -52,14 +73,16 @@ public class PasswordModule : IModule
         {
             if (mEntered == mSolution)
             {
-                OnPassed?.Invoke(this, EventArgs.Empty);
+                OnPassedEventHandler?.Invoke(this, EventArgs.Empty);
                 Debug.Log("Passed Password");
             }
             else
             {
-                OnFailed?.Invoke(this, EventArgs.Empty);
+                OnFailedEventHandler?.Invoke(this, EventArgs.Empty);
                 Debug.Log("Failed Password");
             }
+
+            return;
         }
 
         // Same amount of digits entered, early exit to prevent entering a longer password.
@@ -68,8 +91,12 @@ public class PasswordModule : IModule
             return;
         }
 
-        mEntered += buttonId;
+        SetEnteredText(mEntered + buttonId);
+    }
 
-        mTextDisplay.text = mEntered;
+    private void SetEnteredText(string text)
+    {
+        mEntered = text;
+        mTextDisplay.text = text;
     }
 }
