@@ -11,12 +11,14 @@ public class IModule : MonoBehaviour
     private void Awake()
     {
         OnPassedEventHandler += OnPassed;
+        OnPassedEventHandler += DisableOnComplete;
         OnFailedEventHandler += OnFailed;
     }
 
     private void OnDestroy()
     {
         OnFailedEventHandler -= OnFailed;
+        OnPassedEventHandler -= DisableOnComplete;
         OnPassedEventHandler -= OnPassed;
     }
 
@@ -28,5 +30,9 @@ public class IModule : MonoBehaviour
     protected virtual void OnFailed(object sender, EventArgs args)
     {
         Debug.Log("Failed module!");
+    }
+    protected virtual void DisableOnComplete(object sender, EventArgs args)
+    {
+        gameObject.GetComponent<IModule>().enabled = false;
     }
 }

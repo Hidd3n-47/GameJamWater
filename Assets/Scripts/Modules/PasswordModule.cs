@@ -51,6 +51,17 @@ public class PasswordModule : IModule
         SetEnteredText(String.Empty);
 
     }
+
+    protected override void DisableOnComplete(object sender, EventArgs args)
+    {
+        foreach (ModuleButton button in GetComponentsInChildren<ModuleButton>())
+        {
+            button.enabled = false;
+        }
+
+        base.DisableOnComplete(sender, args);
+    }
+
     protected override void OnFailed(object sender, EventArgs args)
     {
         mLightTransform.GetComponent<MeshRenderer>().material = mFailedMaterial;
