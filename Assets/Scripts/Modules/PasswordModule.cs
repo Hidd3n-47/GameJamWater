@@ -59,8 +59,6 @@ public class PasswordModule : IModule
 
     private void OnButtonPressed(object sender, int buttonId)
     {
-        Debug.Log("Button pressed: " + buttonId + " - entered: " + mEntered);
-
         // Button 11 is cancel.
         if (buttonId == 11)
         {
