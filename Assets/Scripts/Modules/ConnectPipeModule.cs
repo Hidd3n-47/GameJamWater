@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Unity.Collections;
-using Unity.Mathematics;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,6 +11,10 @@ public class ConnectPipeModule : IModule
 
     [SerializeField]
     int mColumns = 3;
+
+    [SerializeField]
+    Transform mParentOfSpawnPoints;
+    Transform[] mSpawnPoints;
 
     private enum CardinalDirection
     {
@@ -38,6 +41,8 @@ public class ConnectPipeModule : IModule
 
     private void Start()
     {
+        mSpawnPoints = mParentOfSpawnPoints.GetComponentsInChildren<Transform>().Where(x => x != mParentOfSpawnPoints).ToArray();
+
         GenerateSolution();
     }
 
@@ -79,8 +84,9 @@ public class ConnectPipeModule : IModule
                 previousDirection = mSolution[x, y].direction;
             }
         }
-    }
 
+        SpawnPipes();
+    }
     private static bool AdjacentToEndPoint(Vector2Int point, Vector2Int end)
     {
         Vector2Int delta = end - point;
@@ -158,5 +164,34 @@ public class ConnectPipeModule : IModule
     private static CardinalDirection GetOppositeDirection(CardinalDirection direction)
     {
         return (CardinalDirection)((int)direction * -1);
+    }
+
+    private void SpawnPipes()
+    {
+        CardinalDirection previousDirection = CardinalDirection.SOUTH;
+        for (int y = 0; y < mColumns; ++y)
+        {
+            for (int x = 0; x < mRows; ++x)
+            {
+                Transform instance;
+                if (mSolution[x, y].partOfSolution)
+                {
+                    int vertical = CardinalDirectionParallel(mSolution[x, y].direction, previousDirection) ? 0 : 1;
+                    Instantiate(mConnections[vertical], mSpawnPoints[y * mColumns + x]);
+                    previousDirection = mSolution[x, y].direction;
+                }
+                else
+                {
+                    //instance = mConnections[Random.Range(0, mConnections.Length - 1)];
+                }
+
+                //Instantiate(instance, mSpawnPoints[y * 7 + x]);
+            }
+        }
+    }
+
+    static bool CardinalDirectionParallel(CardinalDirection dir1, CardinalDirection dir2)
+    {
+        return Math.Abs((int)dir1) == Math.Abs((int)dir2);
     }
 }
