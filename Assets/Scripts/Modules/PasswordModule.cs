@@ -49,7 +49,6 @@ public class PasswordModule : IModule
     {
         mLightTransform.GetComponent<MeshRenderer>().material = mPassedMaterial;
         SetEnteredText(String.Empty);
-
     }
 
     protected override void DisableOnComplete(object sender, EventArgs args)
@@ -73,7 +72,7 @@ public class PasswordModule : IModule
         // Button 11 is cancel.
         if (buttonId == 11)
         {
-            mEntered = String.Empty;
+            SetEnteredText(String.Empty);
             return;
         }
 
