@@ -19,7 +19,7 @@ public class ModuleButton : MonoBehaviour
         mMouseAction  = InputSystem.actions.FindAction("MousePosition");
         mButtonAction = InputSystem.actions.FindAction("MouseDown");
 
-        mCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        mCamera = GameObject.Find("Puzzle Camera").GetComponent<Camera>();
     }
 
     public void Update()
