@@ -11,14 +11,6 @@ public class PasswordModule : IModule
 
     private TextMeshProUGUI mTextDisplay;
 
-    [Header("Light")]
-    [SerializeField]
-    private Transform mLightTransform;
-    [SerializeField]
-    private Material mPassedMaterial;
-    [SerializeField]
-    private Material mFailedMaterial;
-
     private void Start()
     {
         mTextDisplay = GetComponentInChildren<TextMeshProUGUI>();
@@ -80,12 +72,10 @@ public class PasswordModule : IModule
             if (mEntered == mSolution)
             {
                 OnPassedEventHandler?.Invoke();
-                Debug.Log("Passed Password");
             }
-            else
+            else if (mEntered != String.Empty)
             {
                 OnFailedEventHandler?.Invoke();
-                Debug.Log("Failed Password");
             }
 
             return;
