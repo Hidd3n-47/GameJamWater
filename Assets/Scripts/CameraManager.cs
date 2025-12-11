@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,13 +20,18 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private float mTransitionDuration = 0.4f;
 
+    [SerializeField]
+    private float mMainCameraSize = 0.8f;
+    [SerializeField]
+    private float mPuzzleCameraSize = 0.27f;
+
     private bool mMainCameraEnabled = true;
 
-    private InputAction mChangeCameraActionl;
+    private InputAction mChangeCameraAction;
 
     private void Start()
     {
-        mChangeCameraActionl = InputSystem.actions.FindAction("CameraChange");
+        mChangeCameraAction = InputSystem.actions.FindAction("CameraChange");
 
         mMainCamera.gameObject.SetActive(true);
         mPuzzleCamera.gameObject.SetActive(false);
@@ -38,7 +45,7 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
-        if(mChangeCameraActionl.WasCompletedThisFrame())
+        if(mChangeCameraAction.WasCompletedThisFrame())
         {
             StartCoroutine(TransitionCoroutine());
             mMainCameraEnabled = !mMainCameraEnabled;
@@ -57,13 +64,18 @@ public class CameraManager : MonoBehaviour
         Quaternion startingRotation = mMainCameraEnabled ? mMainRotation : mPuzzleRotation;
         Quaternion endingRotation   = mMainCameraEnabled ? mPuzzleRotation : mMainRotation;
 
+        float startingSize = mMainCameraEnabled ? mMainCameraSize : mPuzzleCameraSize;
+        float endingSize = mMainCameraEnabled ? mPuzzleCameraSize : mMainCameraSize;
+
         while (timer < mTransitionDuration)
         {
             Vector3 positionLerp = Vector3.Lerp(startingPosition, endingPosition, timer / mTransitionDuration);
             Quaternion rotationLerp = Quaternion.Lerp(startingRotation, endingRotation, timer / mTransitionDuration);
+            float sizeLerp = math.lerp(startingSize, endingSize, timer / mTransitionDuration);
 
             mMainCamera.gameObject.transform.position = positionLerp;
             mMainCamera.gameObject.transform.rotation = rotationLerp;
+            mMainCamera.orthographicSize = sizeLerp;
 
             timer += Time.deltaTime;
 
@@ -72,5 +84,6 @@ public class CameraManager : MonoBehaviour
 
         mMainCamera.gameObject.transform.position = endingPosition;
         mMainCamera.gameObject.transform.rotation = endingRotation;
+        mMainCamera.orthographicSize = endingSize;
     }
 }
