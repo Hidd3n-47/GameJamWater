@@ -63,7 +63,7 @@ public class PasswordModule : IModule
 
     protected override void OnFailed(object sender, EventArgs args)
     {
-        mLightTransform.GetComponent<MeshRenderer>().material = mFailedMaterial;
+        //mLightTransform.GetComponent<MeshRenderer>().material = mFailedMaterial;
         SetEnteredText(String.Empty);
     }
 
