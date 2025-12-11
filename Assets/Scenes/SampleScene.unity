@@ -1388,7 +1388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mMainCamera: {fileID: 2079356483}
   mPuzzleCamera: {fileID: 330585545}
-  mTransitionDuration: 0
+  mTransitionDuration: 0.4
 --- !u!1 &2014165047
 GameObject:
   m_ObjectHideFlags: 0
