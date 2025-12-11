@@ -47,7 +47,6 @@ public class ConnectPipeModule : IModule
     public void PipeInCorrectPosition()
     {
         ++mNumberCorrect;
-        Debug.Log("Correct " + mNumberCorrect + " / " + mNumberOfPipes);
 
         if (mNumberCorrect >= mNumberOfPipes)
         {
