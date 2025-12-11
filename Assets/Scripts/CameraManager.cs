@@ -40,8 +40,8 @@ public class CameraManager : MonoBehaviour
     {
         if(mChangeCameraActionl.WasCompletedThisFrame())
         {
-            mMainCameraEnabled = !mMainCameraEnabled;
             StartCoroutine(TransitionCoroutine());
+            mMainCameraEnabled = !mMainCameraEnabled;
             //mMainCamera.gameObject.SetActive(mMainCameraEnabled);
             //mPuzzleCamera.gameObject.SetActive(!mMainCameraEnabled);
         }

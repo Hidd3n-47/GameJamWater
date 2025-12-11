@@ -47,7 +47,7 @@ public class PasswordModule : IModule
 
     protected override void OnPassed(object sender, EventArgs args)
     {
-        mLightTransform.GetComponent<MeshRenderer>().material = mPassedMaterial;
+        //mLightTransform.GetComponent<MeshRenderer>().material = mPassedMaterial;
         SetEnteredText(String.Empty);
     }
 

@@ -6,192 +6,212 @@ using Random = UnityEngine.Random;
 
 public class ConnectPipeModule : IModule
 {
-    [SerializeField]
-    int mRows = 3;
+    [SerializeField] private int mRows = 3;
+    [SerializeField] private int mColumns = 3;
+
+    [SerializeField] private Transform mParentOfSpawnPoints;
+    private Transform[] mSpawnPoints;
 
     [SerializeField]
-    int mColumns = 3;
-
-    [SerializeField]
-    Transform mParentOfSpawnPoints;
-    Transform[] mSpawnPoints;
-
-    private enum CardinalDirection
-    {
-        NONE,
-        NORTH =  1,
-        EAST  =  2,
-        SOUTH = -1,
-        WEST  = -2
-    }
-
-    // Order TopLeft, Horizontal, TopRight, BottomLeft, BottomRight
-    [SerializeField] 
     private Transform[] mConnections = { null, null };
+
+    private int mNumberOfPipes = -1;
+    private int mNumberCorrect = 0;
 
     private struct SolutionNode
     {
-        public Transform transform;
+        public Transform prefab;
         public float rotation;
-        public CardinalDirection direction;
         public bool partOfSolution;
     }
 
-    private SolutionNode[,] mSolution = { };
+    private SolutionNode[,] mSolution;
+
+
+    private enum CardinalDirection
+    {
+        NONE = 0,
+        NORTH = 1,
+        EAST = 2,
+        SOUTH = -1,
+        WEST = -2
+    }
 
     private void Start()
     {
-        mSpawnPoints = mParentOfSpawnPoints.GetComponentsInChildren<Transform>().Where(x => x != mParentOfSpawnPoints).ToArray();
+        mSpawnPoints = mParentOfSpawnPoints.GetComponentsInChildren<Transform>().Where(t => t != mParentOfSpawnPoints).ToArray();
 
         GenerateSolution();
     }
 
+    public void PipeInCorrectPosition()
+    {
+        ++mNumberCorrect;
+        Debug.Log("Correct " + mNumberCorrect + " / " + mNumberOfPipes);
+
+        if (mNumberCorrect >= mNumberOfPipes)
+        {
+            OnPassedEventHandler?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    public void PipeRemovedFromCorrectPosition()
+    {
+        --mNumberCorrect;
+    }
+
+    protected override void OnPassed(object sender, EventArgs args)
+    {
+        Debug.Log("Completed module");
+    }
+
     private void GenerateSolution()
     {
-        Vector2Int startingPosition = new Vector2Int(0, 0);
-        Vector2Int currentNodePosition = startingPosition;
-        Vector2Int finalPosition = new Vector2Int(mRows - 1, mColumns - 1);
-
         mSolution = new SolutionNode[mRows, mColumns];
+        List<Vector2Int> path = GenerateRandomPath();
 
-        CardinalDirection previousDirection = CardinalDirection.SOUTH;
-        while (currentNodePosition != finalPosition)
-        {
-            List<CardinalDirection> possibleDirections = GetCardinalDirections(currentNodePosition, startingPosition, previousDirection);
+        mNumberOfPipes = path.Count;
+        mNumberCorrect = 0;
 
-            CardinalDirection direction = possibleDirections[Random.Range(0, possibleDirections.Count)];
-            mSolution[currentNodePosition.x, currentNodePosition.y] = new SolutionNode() { direction = direction, partOfSolution = true};
-
-            currentNodePosition += GetPositionFromCardinalDirection(direction);
-            previousDirection = direction;
-        }
-
-        mSolution[finalPosition.x, finalPosition.y] = new SolutionNode() { direction = CardinalDirection.SOUTH, partOfSolution = true };
-
-        previousDirection = CardinalDirection.SOUTH;
-        for (int y = 0; y < mColumns; ++y)
-        {
-            for (int x = 0; x < mRows; ++x)
-            {
-                if (!mSolution[x, y].partOfSolution)
-                {
-                    continue;
-                }
-
-                bool sameDirection = mSolution[x, y].direction == previousDirection;
-
-                mSolution[x, y].transform = sameDirection ? mConnections[0] : mConnections[1];
-                previousDirection = mSolution[x, y].direction;
-            }
-        }
-
+        AssignPipeShapes(path);
         SpawnPipes();
     }
-    private static bool AdjacentToEndPoint(Vector2Int point, Vector2Int end)
+
+    private List<Vector2Int> GenerateRandomPath()
     {
-        Vector2Int delta = end - point;
-        return Math.Abs(delta.x) + Math.Abs(delta.y) == 1;
-    }
+        List<Vector2Int> path = new List<Vector2Int>();
 
-    private List<CardinalDirection> GetCardinalDirections(Vector2Int position, Vector2Int startingPosition, CardinalDirection previousDirection)
-    {
-        if (position == startingPosition)
+        Vector2Int current = new Vector2Int(0, 0);
+        Vector2Int goal = new Vector2Int(mRows - 1, mColumns - 1);
+
+        path.Add(current);
+
+        while (current != goal)
         {
-            return new List<CardinalDirection>() { CardinalDirection.EAST, CardinalDirection.SOUTH };
-        }
+            List<Vector2Int> options = new List<Vector2Int>();
 
-        var cardinalDirections = new List<CardinalDirection>() { CardinalDirection.NORTH, CardinalDirection.EAST, CardinalDirection.SOUTH, CardinalDirection.WEST };
-
-        if (position.x == 0)
-        {
-            cardinalDirections.Remove(CardinalDirection.WEST);
-
-            // Remove North to ensure there will always be a solution
-            cardinalDirections.Remove(CardinalDirection.NORTH);
-        }
-        else if (position.x == mRows - 1)
-        {
-            cardinalDirections.Remove(CardinalDirection.EAST);
-
-            // Remove North to ensure there will always be a solution
-            cardinalDirections.Remove(CardinalDirection.NORTH);
-        }
-
-        if (position.y == 0)
-        {
-            cardinalDirections.Remove(CardinalDirection.NORTH);
-
-            // Remove West to ensure there will always be a solution
-            cardinalDirections.Remove(CardinalDirection.WEST);
-        }
-        else if (position.y == mColumns - 1)
-        {
-            cardinalDirections.Remove(CardinalDirection.SOUTH);
-
-            // Remove West to ensure there will always be a solution
-            cardinalDirections.Remove(CardinalDirection.WEST);
-        }
-
-        CardinalDirection oppositeDirection = GetOppositeDirection(previousDirection);
-
-        var possibilities = new List<CardinalDirection>();
-        foreach (CardinalDirection dir in cardinalDirections)
-        {
-            Vector2Int updatedPosition = position + GetPositionFromCardinalDirection(dir);
-
-            if (!mSolution[updatedPosition.x, updatedPosition.y].partOfSolution && dir != oppositeDirection)
+            if (current.x + 1 < mRows)
             {
-                possibilities.Add(dir);
+                options.Add(new Vector2Int(current.x + 1, current.y));
             }
+
+            if (current.y + 1 < mColumns)
+            {
+                options.Add(new Vector2Int(current.x, current.y + 1));
+            }
+
+            current = options[Random.Range(0, options.Count)];
+            path.Add(current);
         }
 
-        return possibilities;
+        return path;
     }
 
-    private static Vector2Int GetPositionFromCardinalDirection(CardinalDirection direction)
+    private void AssignPipeShapes(List<Vector2Int> path)
     {
-        switch (direction)
+        for (int i = 0; i < path.Count; i++)
         {
-            case CardinalDirection.NORTH: return new Vector2Int( 0, -1);
-            case CardinalDirection.EAST : return new Vector2Int( 1,  0);
-            case CardinalDirection.SOUTH: return new Vector2Int( 0,  1);
-            case CardinalDirection.WEST : return new Vector2Int(-1,  0);
+            Vector2Int pos = path[i];
+
+            CardinalDirection inDir = CardinalDirection.SOUTH;
+            if (i > 0)
+            {
+                inDir = GetDirection(path[i - 1], pos);
+            }
+
+            CardinalDirection outDir = CardinalDirection.SOUTH;
+            if (i < path.Count - 1)
+            {
+                outDir = GetDirection(pos, path[i + 1]);
+            }
+
+            bool isStraight = Mathf.Abs((int)inDir) == Mathf.Abs((int)outDir);
+
+            Transform prefab;
+            float rotation = 0f;
+
+            if (isStraight)
+            {
+                prefab = mConnections[0];
+
+                if (inDir == CardinalDirection.NORTH || inDir == CardinalDirection.SOUTH)
+                {
+                    rotation = 0f;
+                }
+                else
+                {
+                    rotation = 90f;
+                }
+            }
+            else
+            {
+                prefab = mConnections[1];
+                rotation = DetermineCornerRotation(inDir, outDir);
+            }
+
+            mSolution[pos.x, pos.y] = new SolutionNode
+            {
+                prefab = prefab,
+                rotation = rotation,
+                partOfSolution = true
+            };
         }
-
-        return new Vector2Int(0, 0);
-    }
-
-    private static CardinalDirection GetOppositeDirection(CardinalDirection direction)
-    {
-        return (CardinalDirection)((int)direction * -1);
     }
 
     private void SpawnPipes()
     {
-        CardinalDirection previousDirection = CardinalDirection.SOUTH;
-        for (int y = 0; y < mColumns; ++y)
+        for (int y = 0; y < mColumns; y++)
         {
-            for (int x = 0; x < mRows; ++x)
+            for (int x = 0; x < mRows; x++)
             {
-                Transform instance;
-                if (mSolution[x, y].partOfSolution)
+                SolutionNode node = mSolution[x, y];
+                if (!node.partOfSolution)
                 {
-                    int vertical = CardinalDirectionParallel(mSolution[x, y].direction, previousDirection) ? 0 : 1;
-                    Instantiate(mConnections[vertical], mSpawnPoints[y * mColumns + x]);
-                    previousDirection = mSolution[x, y].direction;
-                }
-                else
-                {
-                    //instance = mConnections[Random.Range(0, mConnections.Length - 1)];
+                    continue;
                 }
 
-                //Instantiate(instance, mSpawnPoints[y * 7 + x]);
+                Transform spawnPoint = mSpawnPoints[y * mRows + x];
+
+                Transform instance = Instantiate(node.prefab, spawnPoint.position, Quaternion.identity, spawnPoint);
+                instance.GetComponent<Pipe>().Init(this, node.rotation, node.prefab == mConnections[1]);
             }
         }
     }
 
-    static bool CardinalDirectionParallel(CardinalDirection dir1, CardinalDirection dir2)
+    private static CardinalDirection GetDirection(Vector2Int from, Vector2Int to)
     {
-        return Math.Abs((int)dir1) == Math.Abs((int)dir2);
+        Vector2Int diff = to - from;
+
+        if (diff.x == 1)  return CardinalDirection.EAST;
+        if (diff.x == -1) return CardinalDirection.WEST;
+        if (diff.y == 1)  return CardinalDirection.SOUTH;
+        if (diff.y == -1) return CardinalDirection.NORTH;
+
+        return CardinalDirection.NONE;
+    }
+
+    private float DetermineCornerRotation(CardinalDirection inDir, CardinalDirection outDir)
+    {
+        if (inDir == CardinalDirection.EAST && outDir == CardinalDirection.SOUTH)
+        {
+            return 0.0f;
+        }
+
+        if (inDir == CardinalDirection.EAST && outDir == CardinalDirection.NORTH)
+        {
+            return 90.0f;
+        }
+
+        if (inDir == CardinalDirection.SOUTH && outDir == CardinalDirection.EAST)
+        {
+            return 180.0f;
+        }
+
+        if (inDir == CardinalDirection.NORTH && outDir == CardinalDirection.EAST)
+        {
+            return 270.0f;
+        }
+
+        return 0f;
     }
 }
