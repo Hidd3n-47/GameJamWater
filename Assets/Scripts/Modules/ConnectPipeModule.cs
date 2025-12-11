@@ -50,7 +50,7 @@ public class ConnectPipeModule : IModule
 
         if (mNumberCorrect >= mNumberOfPipes)
         {
-            OnPassedEventHandler?.Invoke(this, EventArgs.Empty);
+            OnPassedEventHandler?.Invoke();
         }
     }
 
@@ -59,7 +59,7 @@ public class ConnectPipeModule : IModule
         --mNumberCorrect;
     }
 
-    protected override void OnPassed(object sender, EventArgs args)
+    protected override void OnPassed()
     {
         Debug.Log("Completed module");
     }

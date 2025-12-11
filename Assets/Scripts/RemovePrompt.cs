@@ -9,6 +9,7 @@ public class RemovePrompt : MonoBehaviour
     {
         mChangeCameraAction = InputSystem.actions.FindAction("CameraChange");
     }
+
     private void Update()
     {
         if (mChangeCameraAction.WasCompletedThisFrame())

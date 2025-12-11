@@ -26,7 +26,7 @@ public class PasswordModule : IModule
 
         foreach (ModuleButton button in GetComponentsInChildren<ModuleButton>())
         {
-            button.OnButtonPressedEvent += OnButtonPressed;
+            button.OnButtonPressedEvent.AddListener(OnButtonPressed);
         }
 
         for (int i = 0; i < 4; ++i)
@@ -41,33 +41,31 @@ public class PasswordModule : IModule
     {
         foreach (ModuleButton button in GetComponentsInChildren<ModuleButton>())
         {
-            button.OnButtonPressedEvent -= OnButtonPressed;
+            button.OnButtonPressedEvent.RemoveListener(OnButtonPressed);
         }
     }
 
-    protected override void OnPassed(object sender, EventArgs args)
+    protected override void OnPassed()
     {
-        //mLightTransform.GetComponent<MeshRenderer>().material = mPassedMaterial;
         SetEnteredText(String.Empty);
     }
 
-    protected override void DisableOnComplete(object sender, EventArgs args)
+    protected override void DisableOnComplete()
     {
         foreach (ModuleButton button in GetComponentsInChildren<ModuleButton>())
         {
             button.enabled = false;
         }
 
-        base.DisableOnComplete(sender, args);
+        base.DisableOnComplete();
     }
 
-    protected override void OnFailed(object sender, EventArgs args)
+    protected override void OnFailed()
     {
-        //mLightTransform.GetComponent<MeshRenderer>().material = mFailedMaterial;
         SetEnteredText(String.Empty);
     }
 
-    private void OnButtonPressed(object sender, int buttonId)
+    private void OnButtonPressed(int buttonId)
     {
         // Button 11 is cancel.
         if (buttonId == 11)
@@ -81,12 +79,12 @@ public class PasswordModule : IModule
         {
             if (mEntered == mSolution)
             {
-                OnPassedEventHandler?.Invoke(this, EventArgs.Empty);
+                OnPassedEventHandler?.Invoke();
                 Debug.Log("Passed Password");
             }
             else
             {
-                OnFailedEventHandler?.Invoke(this, EventArgs.Empty);
+                OnFailedEventHandler?.Invoke();
                 Debug.Log("Failed Password");
             }
 
