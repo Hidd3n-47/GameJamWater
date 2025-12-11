@@ -9,6 +9,9 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private Camera mPuzzleCamera;
 
+    [SerializeField]
+    private float mTransitionDuration;
+
     private bool mMainCameraEnabled = true;
 
     private InputAction mChangeCameraActionl;
@@ -31,4 +34,9 @@ public class CameraManager : MonoBehaviour
             mPuzzleCamera.gameObject.SetActive(!mMainCameraEnabled);
         }
     }
+
+    //private Coroutine TransitionCoroutine()
+    //{
+
+    //}
 }

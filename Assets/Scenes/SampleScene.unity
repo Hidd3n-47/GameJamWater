@@ -182,6 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mMainCamera: {fileID: 2079356483}
   mPuzzleCamera: {fileID: 330585545}
+  mTransitionDuration: 0
 --- !u!4 &221732930
 Transform:
   m_ObjectHideFlags: 0
@@ -1214,10 +1215,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5321611647099059223, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2105d08bea7a0604d8ffc8cc6a98237a, type: 2}
     - target: {fileID: 5678986971326604109, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
       propertyPath: m_Name
       value: PasswordModule
       objectReference: {fileID: 0}
+    - target: {fileID: 8489717592670692020, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2105d08bea7a0604d8ffc8cc6a98237a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1379,6 +1388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mMainCamera: {fileID: 2079356483}
   mPuzzleCamera: {fileID: 330585545}
+  mTransitionDuration: 0
 --- !u!1 &2014165047
 GameObject:
   m_ObjectHideFlags: 0
