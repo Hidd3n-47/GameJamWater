@@ -1185,7 +1185,7 @@ MonoBehaviour:
   timeFailedFlash: 0.35
   timeBetweenFlash: 0.4
   numberOfFlashWhenFailed: 3
-  passedAudioClip: {fileID: 8300000, guid: 0bdcfdc6602a9f54d8315b10a07da2b8, type: 3}
+  passedAudioClip: {fileID: 8300000, guid: eaa710c99fc2d2348a5255326aec976b, type: 3}
   failedAudioClip: {fileID: 8300000, guid: b26597471e0c4724ea630d0ff7ea08ba, type: 3}
 --- !u!4 &511921254
 Transform:
@@ -1557,6 +1557,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a103edfd78e2f6645890aeae4f25d1d1, type: 2}
+    - target: {fileID: 4025331497901869197, guid: 46ee4aef49189554ab98939150ce9362, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4025331497901869197, guid: 46ee4aef49189554ab98939150ce9362, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5108146228473539429, guid: 46ee4aef49189554ab98939150ce9362, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.001
@@ -1857,7 +1865,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: -876546973899608171, guid: 59a91d4d89238fc46a51f82ea2ae3157, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1897,7 +1905,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 1, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1325496656}
