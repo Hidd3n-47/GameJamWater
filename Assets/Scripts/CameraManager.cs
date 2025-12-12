@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,6 +12,15 @@ public class CameraManager : MonoBehaviour
 
     [SerializeField]
     private Camera mPuzzleCamera;
+
+    [SerializeField]
+    private Light mMainLight;
+
+    [SerializeField]
+    private Light mPuzzleLight;
+
+    [SerializeField]
+    private float mDelayToTurnMainCameraLightOn = 0.2f;
 
     private Vector3    mMainPosition;
     private Quaternion mMainRotation;
@@ -49,6 +59,16 @@ public class CameraManager : MonoBehaviour
         if(mChangeCameraAction.WasCompletedThisFrame())
         {
             StartCoroutine(TransitionCoroutine());
+            if (mMainCameraEnabled)
+            {
+                mMainLight.gameObject.SetActive(false);
+                mPuzzleLight.gameObject.SetActive(true);
+            }
+            else
+            {
+                StartCoroutine(EnableMainCamera());
+            }
+
             mMainCameraEnabled = !mMainCameraEnabled;
         }
     }
@@ -64,7 +84,7 @@ public class CameraManager : MonoBehaviour
         Quaternion endingRotation   = mMainCameraEnabled ? mPuzzleRotation : mMainRotation;
 
         float startingSize = mMainCameraEnabled ? mMainCameraSize : mPuzzleCameraSize;
-        float endingSize = mMainCameraEnabled ? mPuzzleCameraSize : mMainCameraSize;
+        float endingSize   = mMainCameraEnabled ? mPuzzleCameraSize : mMainCameraSize;
 
         while (timer < mTransitionDuration)
         {
@@ -84,5 +104,20 @@ public class CameraManager : MonoBehaviour
         mMainCamera.gameObject.transform.position = endingPosition;
         mMainCamera.gameObject.transform.rotation = endingRotation;
         mMainCamera.orthographicSize = endingSize;
+    }
+
+    private IEnumerator EnableMainCamera()
+    {
+        float timer = 0.0f;
+
+        while (timer < mDelayToTurnMainCameraLightOn)
+        {
+            timer += Time.deltaTime;
+
+            yield return null;
+        }
+
+        mMainLight.gameObject.SetActive(true);
+        mPuzzleLight.gameObject.SetActive(false);
     }
 }
