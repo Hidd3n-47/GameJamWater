@@ -11,6 +11,14 @@ public class PasswordModule : IModule
 
     private TextMeshProUGUI mTextDisplay;
 
+    [Header("Light")]
+    [SerializeField]
+    private Transform mLightTransform;
+    [SerializeField]
+    private Material mPassedMaterial;
+    [SerializeField]
+    private Material mFailedMaterial;
+
     private void Start()
     {
         mTextDisplay = GetComponentInChildren<TextMeshProUGUI>();
@@ -18,7 +26,7 @@ public class PasswordModule : IModule
 
         foreach (ModuleButton button in GetComponentsInChildren<ModuleButton>())
         {
-            button.OnButtonPressedEvent.AddListener(OnButtonPressed);
+            button.OnButtonPressedEvent += OnButtonPressed;
         }
 
         for (int i = 0; i < 4; ++i)
@@ -33,31 +41,33 @@ public class PasswordModule : IModule
     {
         foreach (ModuleButton button in GetComponentsInChildren<ModuleButton>())
         {
-            button.OnButtonPressedEvent.RemoveListener(OnButtonPressed);
+            button.OnButtonPressedEvent -= OnButtonPressed;
         }
     }
 
-    protected override void OnPassed()
+    protected override void OnPassed(object sender, EventArgs args)
     {
+        //mLightTransform.GetComponent<MeshRenderer>().material = mPassedMaterial;
         SetEnteredText(String.Empty);
     }
 
-    protected override void DisableOnComplete()
+    protected override void DisableOnComplete(object sender, EventArgs args)
     {
         foreach (ModuleButton button in GetComponentsInChildren<ModuleButton>())
         {
             button.enabled = false;
         }
 
-        base.DisableOnComplete();
+        base.DisableOnComplete(sender, args);
     }
 
-    protected override void OnFailed()
+    protected override void OnFailed(object sender, EventArgs args)
     {
+        //mLightTransform.GetComponent<MeshRenderer>().material = mFailedMaterial;
         SetEnteredText(String.Empty);
     }
 
-    private void OnButtonPressed(int buttonId)
+    private void OnButtonPressed(object sender, int buttonId)
     {
         // Button 11 is cancel.
         if (buttonId == 11)
@@ -71,11 +81,13 @@ public class PasswordModule : IModule
         {
             if (mEntered == mSolution)
             {
-                OnPassedEventHandler?.Invoke();
+                OnPassedEventHandler?.Invoke(this, EventArgs.Empty);
+                Debug.Log("Passed Password");
             }
-            else if (mEntered != String.Empty)
+            else
             {
-                OnFailedEventHandler?.Invoke();
+                OnFailedEventHandler?.Invoke(this, EventArgs.Empty);
+                Debug.Log("Failed Password");
             }
 
             return;

@@ -29,15 +29,15 @@ public class Pipe : MonoBehaviour
             mModule.PipeInCorrectPosition();
         }
 
-        GetComponentInChildren<ModuleButton>().OnButtonPressedEvent.AddListener(OnClicked);
+        GetComponentInChildren<ModuleButton>().OnButtonPressedEvent += OnClicked;
     }
 
     private void OnDestroy()
     {
-        GetComponentInChildren<ModuleButton>().OnButtonPressedEvent.RemoveListener(OnClicked);
+        GetComponentInChildren<ModuleButton>().OnButtonPressedEvent -= OnClicked;
     }
 
-    private void OnClicked(int buttonId)
+    private void OnClicked(object sender, int buttonId)
     {
         if (!mModule.isActiveAndEnabled)
         {

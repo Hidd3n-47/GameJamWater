@@ -1,10 +1,10 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class ModuleButton : MonoBehaviour
 {
-    public UnityEvent<int> OnButtonPressedEvent;
+    public EventHandler<int> OnButtonPressedEvent;
 
     [SerializeField]
     private int mButtonId;
@@ -19,6 +19,7 @@ public class ModuleButton : MonoBehaviour
         mMouseAction  = InputSystem.actions.FindAction("MousePosition");
         mButtonAction = InputSystem.actions.FindAction("MouseDown");
 
+        //mCamera = GameObject.Find("Puzzle Camera").GetComponent<Camera>();
         mCamera = Camera.main;
     }
 
@@ -35,7 +36,7 @@ public class ModuleButton : MonoBehaviour
         {
             if (hitInfo.collider.gameObject == gameObject)
             {
-                OnButtonPressedEvent?.Invoke(mButtonId);
+                OnButtonPressedEvent?.Invoke(this, mButtonId);
             }
         }
     }
