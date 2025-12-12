@@ -1588,6 +1588,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2134337642287916435, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134337642287916435, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 97d97ed2d95e939418d515afe282bf22, type: 3}
+    - target: {fileID: 2134337642287916435, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 97d97ed2d95e939418d515afe282bf22, type: 3}
+    - target: {fileID: 2134337642287916435, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134337642287916435, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2158024384447888471, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -1599,6 +1619,14 @@ PrefabInstance:
     - target: {fileID: 2158024384447888471, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038341113286475155, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038341113286475155, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4489751429155993474, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
       propertyPath: m_LocalPosition.x
