@@ -1,37 +1,134 @@
-using System;
+using System.Collections;
+using System.Linq;
+using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
+[RequireComponent(typeof(AudioSource))]
 public class IModule : MonoBehaviour
 {
-    // Todo Christian: I think a good way to do this is to have an ID for the module, that way we can automatically handle the passing/failing.
-    // ID will be mapped to game object on a manager?
-    public EventHandler OnPassedEventHandler;
-    public EventHandler OnFailedEventHandler;
+    public Transform mLightTransform;
+    private OnPassedOrFailedVariables mPassedOrFailedVariables;
+
+    public UnityEvent OnPassedEventHandler;
+    public UnityEvent OnFailedEventHandler;
+
+    private Light mWhiteLight;
+    private Light mGreenLight;
+    private Light mRedLight;
+
+    private Light mCurrentActiveLight;
 
     private void Awake()
     {
-        OnPassedEventHandler += OnPassed;
-        OnPassedEventHandler += DisableOnComplete;
-        OnFailedEventHandler += OnFailed;
+        OnPassedEventHandler.AddListener(Passed);
+        OnFailedEventHandler.AddListener(Failed);
+
+        mPassedOrFailedVariables = GameObject.Find("OnPassedOrFailedVariables").GetComponent<OnPassedOrFailedVariables>();
+
+        GetComponent<AudioSource>().playOnAwake = false;
+
+        Light[] lights = GetComponentsInChildren<Light>(includeInactive: true);
+        mWhiteLight = lights.Where(x => x.name == "White Light").ToArray()[0];
+        mGreenLight = lights.Where(x => x.name == "Green Light").ToArray()[0];
+        mRedLight = lights.Where(x => x.name == "Red Light").ToArray()[0];
+
+        mCurrentActiveLight = mWhiteLight;
     }
 
     private void OnDestroy()
     {
-        OnFailedEventHandler -= OnFailed;
-        OnPassedEventHandler -= DisableOnComplete;
-        OnPassedEventHandler -= OnPassed;
+        OnFailedEventHandler.RemoveListener(Failed);
+        OnPassedEventHandler.RemoveListener(Passed);
     }
 
-    protected virtual void OnPassed(object sender, EventArgs args)
+    private void Passed()
+    {
+        // In case the light is still flashing from failing.
+        StopAllCoroutines();
+
+        if (mPassedOrFailedVariables.passedAudioClip)
+        {
+            AudioSource source = GetComponent<AudioSource>();
+            source.resource = mPassedOrFailedVariables.passedAudioClip;
+
+            source.Play();
+        }
+
+        ChangeActiveLight(mGreenLight);
+        mLightTransform.GetComponent<MeshRenderer>().material = mPassedOrFailedVariables.passedMaterial;
+
+        DisableOnComplete();
+
+        OnPassed();
+    }
+
+    private void Failed()
+    {
+        AudioSource source = GetComponent<AudioSource>();
+        if (!(source.isPlaying && source.resource == mPassedOrFailedVariables.failedAudioClip))
+        {
+            source.resource = mPassedOrFailedVariables.failedAudioClip;
+            source.Play();
+        }
+
+        source.Play();
+
+        StartCoroutine(LightAnimation());
+
+        OnFailed();
+    }
+
+    private IEnumerator LightAnimation()
+    {
+        MeshRenderer meshRenderer = mLightTransform.GetComponent<MeshRenderer>();
+
+        for (int i = 0; i < mPassedOrFailedVariables.numberOfFlashWhenFailed; i++)
+        {
+            float timer = 0.0f;
+
+            meshRenderer.material = mPassedOrFailedVariables.failedMaterial;
+            ChangeActiveLight(mRedLight);
+            while (timer < mPassedOrFailedVariables.timeFailedFlash)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            timer = 0.0f;
+
+            meshRenderer.material = mPassedOrFailedVariables.standardMaterial;
+            ChangeActiveLight(mWhiteLight);
+            while (timer < mPassedOrFailedVariables.timeBetweenFlash)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        ChangeActiveLight(mWhiteLight);
+        meshRenderer.material = mPassedOrFailedVariables.standardMaterial;
+    }
+
+    private void ChangeActiveLight(Light light)
+    {
+        mCurrentActiveLight.gameObject.SetActive(false);
+        light.gameObject.SetActive(true);
+
+        mCurrentActiveLight = light;
+    }
+
+    protected virtual void OnPassed()
     {
         Debug.Log("Passed module!");
     }
 
-    protected virtual void OnFailed(object sender, EventArgs args)
+    protected virtual void OnFailed()
     {
         Debug.Log("Failed module!");
     }
-    protected virtual void DisableOnComplete(object sender, EventArgs args)
+
+    protected virtual void DisableOnComplete()
     {
         gameObject.GetComponent<IModule>().enabled = false;
     }
