@@ -1953,7 +1953,7 @@ PrefabInstance:
     - target: {fileID: 6707007673920156282, guid: 46ee4aef49189554ab98939150ce9362, type: 3}
       propertyPath: mLightTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 313317375}
     - target: {fileID: 8113561790018553216, guid: 46ee4aef49189554ab98939150ce9362, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.077
