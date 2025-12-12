@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Outline))]
 public class ModuleButton : MonoBehaviour
 {
     public UnityEvent<int> OnButtonPressedEvent;
@@ -24,19 +25,33 @@ public class ModuleButton : MonoBehaviour
 
     public void Update()
     {
-        if (!mButtonAction.WasCompletedThisFrame())
-        {
-            return;
-        }
-
+        bool hovered = false;
         Ray ray = mCamera.ScreenPointToRay(mMouseAction.ReadValue<Vector2>());
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo))
         {
             if (hitInfo.collider.gameObject == gameObject)
             {
-                OnButtonPressedEvent?.Invoke(mButtonId);
+                hovered = true;
             }
         }
+
+        if (hovered)
+        {
+            GetComponent<Outline>().enabled = true;
+        }
+        else
+        {
+            GetComponent<Outline>().enabled = false;
+            return;
+        }
+
+
+        if (!mButtonAction.WasCompletedThisFrame())
+        {
+            return;
+        }
+
+        OnButtonPressedEvent?.Invoke(mButtonId);
     }
 }
