@@ -126,6 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20fb538e590eba24e99d101e1e2c45ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnButtonPressedEvent:
+    m_PersistentCalls:
+      m_Calls: []
   mButtonId: 0
 --- !u!65 &3960216194486986615
 BoxCollider:
