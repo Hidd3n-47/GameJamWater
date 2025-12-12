@@ -12,18 +12,16 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private Camera mPuzzleCamera;
 
-    private Vector3 mMainPosition;
+    private Vector3    mMainPosition;
     private Quaternion mMainRotation;
-    private Vector3 mPuzzlePosition;
+    private Vector3    mPuzzlePosition;
     private Quaternion mPuzzleRotation;
+
+    private float mMainCameraSize;
+    private float mPuzzleCameraSize;
 
     [SerializeField]
     private float mTransitionDuration = 0.4f;
-
-    [SerializeField]
-    private float mMainCameraSize = 0.8f;
-    [SerializeField]
-    private float mPuzzleCameraSize = 0.27f;
 
     private bool mMainCameraEnabled = true;
 
@@ -41,6 +39,9 @@ public class CameraManager : MonoBehaviour
 
         mPuzzlePosition = mPuzzleCamera.gameObject.transform.position;
         mPuzzleRotation = mPuzzleCamera.gameObject.transform.rotation;
+
+        mMainCameraSize   = mMainCamera.orthographicSize;
+        mPuzzleCameraSize = mPuzzleCamera.orthographicSize;
     }
 
     private void Update()
@@ -49,8 +50,6 @@ public class CameraManager : MonoBehaviour
         {
             StartCoroutine(TransitionCoroutine());
             mMainCameraEnabled = !mMainCameraEnabled;
-            //mMainCamera.gameObject.SetActive(mMainCameraEnabled);
-            //mPuzzleCamera.gameObject.SetActive(!mMainCameraEnabled);
         }
     }
 
