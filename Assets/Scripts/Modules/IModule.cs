@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Linq;
-using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,6 +17,16 @@ public class IModule : MonoBehaviour
     private Light mRedLight;
 
     private Light mCurrentActiveLight;
+
+    private int mModuleId;
+    public int ModuleId
+    {
+        get => mModuleId;
+        set
+        {
+            mModuleId = value;
+        }
+    }
 
     private void Awake()
     {
