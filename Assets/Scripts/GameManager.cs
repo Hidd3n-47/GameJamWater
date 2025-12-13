@@ -1,23 +1,32 @@
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
+using Random = System.Random;
 
 public class GameManager : MonoBehaviour
 {
-    private IModule[] mModules = { null, null, null, null, null, null };
+    [SerializeField]
+    List<Material> mColors;
 
     [SerializeField]
-    private List<Transform> mModulesList;
+    List<Town> mTowns;
+
+    [SerializeField]
+    List<MeshRenderer> mTownBackPlanes;
 
     private void Start()
     {
-        GenerateTable();
-    }
+        Random rnd = new Random();
+        var randomUniqueList = Enumerable.Range(0, mTowns.Count)
+            .OrderBy(x => rnd.Next())
+            .ToList();
 
-    private void GenerateTable()
-    {
-        // For now, just generate a password module in position 4 (2nd row, 2nd column).
-        Transform moduleGameObject = Instantiate(mModulesList[0]);
-        mModules[4] = moduleGameObject.GetComponent<IModule>();
+        foreach (Town t in mTowns)
+        {
+            t.GetComponentInChildren<MeshRenderer>().material = mColors[randomUniqueList[0]];
+
+            randomUniqueList.Remove(randomUniqueList[0]);
+        }
     }
 }
