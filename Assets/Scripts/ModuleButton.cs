@@ -36,6 +36,7 @@ public class ModuleButton : MonoBehaviour
     {
         if (mCameraManager.MainCameraView)
         {
+            GetComponent<Outline>().enabled = false;
             return;
         }
 
