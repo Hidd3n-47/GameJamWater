@@ -37,6 +37,8 @@ public class CameraManager : MonoBehaviour
 
     private InputAction mChangeCameraAction;
 
+    public bool MainCameraView => mMainCameraEnabled;
+
     private void Start()
     {
         mChangeCameraAction = InputSystem.actions.FindAction("CameraChange");

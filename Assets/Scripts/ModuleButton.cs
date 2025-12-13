@@ -11,6 +11,7 @@ public class ModuleButton : MonoBehaviour
     private int mButtonId;
 
     Camera mCamera;
+    private CameraManager mCameraManager;
 
     private InputAction mMouseAction;
     private InputAction mButtonAction;
@@ -27,10 +28,17 @@ public class ModuleButton : MonoBehaviour
         mButtonAction = InputSystem.actions.FindAction("MouseDown");
 
         mCamera = Camera.main;
+
+        mCameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
     }
 
     public void Update()
     {
+        if (mCameraManager.MainCameraView)
+        {
+            return;
+        }
+
         mHovering = false;
         Ray ray = mCamera.ScreenPointToRay(mMouseAction.ReadValue<Vector2>());
 
