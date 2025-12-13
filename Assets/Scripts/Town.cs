@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using System.Linq;
 
 public class Town : MonoBehaviour
 {
@@ -17,6 +17,18 @@ public class Town : MonoBehaviour
     float mRedPercent = 25.0f;
 
     private TownLightMaterials mMaterials;
+
+    public bool CanFix => mPercentage <= mYellowPercent;
+
+    public void IncreasePercentage(float addition)
+    {
+        mPercentage = Math.Max(mPercentage + addition, 100.0f);
+    }
+
+    public void DecreasePercentage(float decrease)
+    {
+        mPercentage -= decrease;
+    }
 
     void Awake()
     {

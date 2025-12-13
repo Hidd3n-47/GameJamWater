@@ -11,6 +11,7 @@ public class IModule : MonoBehaviour
 
     public UnityEvent OnPassedEventHandler;
     public UnityEvent OnFailedEventHandler;
+    public UnityEvent<int, bool> OnPuzzleCompletedEventHandler;
 
     private Light mWhiteLight;
     private Light mGreenLight;
@@ -26,6 +27,12 @@ public class IModule : MonoBehaviour
         {
             mModuleId = value;
         }
+    }
+
+    public void Register(GameManager manager, int moduleId)
+    {
+        mModuleId = moduleId;
+        OnPuzzleCompletedEventHandler.AddListener(manager.OnModuleCompleted);
     }
 
     private void Awake()
@@ -69,6 +76,8 @@ public class IModule : MonoBehaviour
 
         DisableOnComplete();
 
+        OnPuzzleCompletedEventHandler?.Invoke(mModuleId, true);
+
         OnPassed();
     }
 
@@ -84,6 +93,8 @@ public class IModule : MonoBehaviour
         source.Play();
 
         StartCoroutine(LightAnimation());
+
+        OnPuzzleCompletedEventHandler?.Invoke(mModuleId, false);
 
         OnFailed();
     }

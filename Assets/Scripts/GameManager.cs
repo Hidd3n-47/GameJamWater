@@ -6,6 +6,15 @@ using Random = System.Random;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Values to tweak")]
+    [SerializeField]
+    private float mPercentageForPassing = 100.0f;
+    [SerializeField]
+    private float mPercentageLostForFailing = 20.0f;
+    [SerializeField]
+    private float mPercentageLostForDoingModuleTooSoon = 20.0f;
+
+    [Header("Info for puzzles (Order Matters!)")]
     [SerializeField]
     List<Material> mColors;
 
@@ -22,6 +31,26 @@ public class GameManager : MonoBehaviour
 
     private readonly List<int> mColorIdOfModules = new();
 
+    public void OnModuleCompleted(int moduleId, bool passed)
+    {
+        Town town = mIdToTown[moduleId];
+        if (town.CanFix && passed)
+        {
+            Debug.Log("Well done you fixed it.");
+            town.IncreasePercentage(mPercentageForPassing);
+        }
+        else if(passed)
+        {
+            Debug.Log("Town not ready to fix, face the consequences.");
+            town.DecreasePercentage(mPercentageLostForDoingModuleTooSoon);
+        }
+        else
+        {
+            Debug.Log("You just failed, skill issue.");
+            town.DecreasePercentage(mPercentageLostForFailing);
+        }
+    }
+
     private void Start()
     {
         GenerateRandomColorForTowns();
@@ -33,6 +62,7 @@ public class GameManager : MonoBehaviour
             if(!mModules[i]) continue;
 
             mModules[i].ModuleId = mColorIdOfModules[i];
+            mModules[i].Register(this, mColorIdOfModules[i]);
             Debug.Log(i + " - " + mColorIdOfModules[i]);
         }
     }
