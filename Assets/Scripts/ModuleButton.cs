@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Outline))]
+[RequireComponent(typeof(Outline), typeof(BoxCollider))]
 public class ModuleButton : MonoBehaviour
 {
     public UnityEvent<int> OnButtonPressedEvent;
@@ -15,6 +15,12 @@ public class ModuleButton : MonoBehaviour
     private InputAction mMouseAction;
     private InputAction mButtonAction;
 
+    private bool mHovering;
+    private bool mMouseDown;
+
+    public bool Hovering => mHovering;
+    public bool MouseDown => mMouseDown;
+
     private void Awake()
     {
         mMouseAction  = InputSystem.actions.FindAction("MousePosition");
@@ -25,18 +31,18 @@ public class ModuleButton : MonoBehaviour
 
     public void Update()
     {
-        bool hovered = false;
+        mHovering = false;
         Ray ray = mCamera.ScreenPointToRay(mMouseAction.ReadValue<Vector2>());
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo))
         {
             if (hitInfo.collider.gameObject == gameObject)
             {
-                hovered = true;
+                mHovering = true;
             }
         }
 
-        if (hovered)
+        if (mHovering)
         {
             GetComponent<Outline>().enabled = true;
         }
@@ -46,11 +52,16 @@ public class ModuleButton : MonoBehaviour
             return;
         }
 
-
         if (!mButtonAction.WasCompletedThisFrame())
         {
+            if (mButtonAction.IsInProgress())
+            {
+                mMouseDown = true;
+            }
             return;
         }
+
+        mMouseDown = false;
 
         OnButtonPressedEvent?.Invoke(mButtonId);
     }
