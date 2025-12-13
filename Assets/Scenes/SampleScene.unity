@@ -2931,6 +2931,34 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2172839735663370020, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: OnPassedEventHandler.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172839735663370020, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: OnPassedEventHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172839735663370020, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: OnPassedEventHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 221732931}
+    - target: {fileID: 2172839735663370020, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: OnPassedEventHandler.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172839735663370020, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: OnPassedEventHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Trans
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172839735663370020, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: OnPassedEventHandler.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CameraManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172839735663370020, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: OnPassedEventHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4038341113286475155, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
       propertyPath: m_Volume
       value: 0.1
@@ -4686,6 +4714,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25d1e9e250094384998fb69ffbd761ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mPercentageForPassing: 100
+  mPercentageLostForFailing: 20
+  mPercentageLostForDoingModuleTooSoon: 20
   mColors:
   - {fileID: 2100000, guid: 2a33ed18f6e2e124297d81d363d1887e, type: 2}
   - {fileID: 2100000, guid: aa0fa0768a073b542aebe4367b43893b, type: 2}

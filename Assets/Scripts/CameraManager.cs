@@ -60,19 +60,24 @@ public class CameraManager : MonoBehaviour
     {
         if(mChangeCameraAction.WasCompletedThisFrame())
         {
-            StartCoroutine(TransitionCoroutine());
-            if (mMainCameraEnabled)
-            {
-                mMainLight.gameObject.SetActive(false);
-                mPuzzleLight.gameObject.SetActive(true);
-            }
-            else
-            {
-                StartCoroutine(EnableMainCamera());
-            }
-
-            mMainCameraEnabled = !mMainCameraEnabled;
+            Trans();
         }
+    }
+
+    public void Trans()
+    {
+        StartCoroutine(TransitionCoroutine());
+        if (mMainCameraEnabled)
+        {
+            mMainLight.gameObject.SetActive(false);
+            mPuzzleLight.gameObject.SetActive(true);
+        }
+        else
+        {
+            StartCoroutine(EnableMainCamera());
+        }
+
+        mMainCameraEnabled = !mMainCameraEnabled;
     }
 
     private IEnumerator TransitionCoroutine()
