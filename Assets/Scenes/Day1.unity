@@ -6777,10 +6777,11 @@ MonoBehaviour:
   mTheInbetween: 2
   mMatWhite: {fileID: 2100000, guid: 58c49dbfe42d38e4899ab30db0c6794c, type: 2}
   mMatGreen: {fileID: 2100000, guid: a3ba1e8d3b7d9aa4f9ae4d3a200aa6b1, type: 2}
-  mPlayAudio: 0
+  mPlayAudio: 1
   mRinging: {fileID: 783477588}
   mVoiceOver: {fileID: 783477586}
   mEndCall: {fileID: 783477587}
+  skipping: {fileID: 1758205252}
 --- !u!82 &783477586
 AudioSource:
   m_ObjectHideFlags: 0

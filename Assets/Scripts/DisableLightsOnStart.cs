@@ -35,6 +35,8 @@ public class DisableLightsOnStart : MonoBehaviour
 
     private bool playingAudio = false;
 
+    public Transform skipping;
+
     private void Start()
     {
         {
@@ -116,6 +118,7 @@ public class DisableLightsOnStart : MonoBehaviour
 
         if (mPlayAudio)
         {
+            skipping.gameObject.SetActive(true);
             playingAudio = true;
             yield return PlayVoiceLine();
         }
