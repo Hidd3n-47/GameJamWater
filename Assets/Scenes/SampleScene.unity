@@ -840,7 +840,7 @@ PrefabInstance:
     - target: {fileID: -830180441514636635, guid: d4452ad6d32b4ec4a87696deb40dbd5b, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 4e4cf26fa05b8d748b35e09043697b8d, type: 2}
+      objectReference: {fileID: 2100000, guid: a3ba1e8d3b7d9aa4f9ae4d3a200aa6b1, type: 2}
     - target: {fileID: -103404337440716640, guid: d4452ad6d32b4ec4a87696deb40dbd5b, type: 3}
       propertyPath: m_CastShadows
       value: 1
@@ -936,7 +936,7 @@ PrefabInstance:
     - target: {fileID: 2594715784730231980, guid: d4452ad6d32b4ec4a87696deb40dbd5b, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 4e4cf26fa05b8d748b35e09043697b8d, type: 2}
+      objectReference: {fileID: 2100000, guid: a3ba1e8d3b7d9aa4f9ae4d3a200aa6b1, type: 2}
     - target: {fileID: 3278685633723606424, guid: d4452ad6d32b4ec4a87696deb40dbd5b, type: 3}
       propertyPath: m_Name
       value: Burnley
@@ -2180,6 +2180,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1923396185}
     m_Modifications:
+    - target: {fileID: 804894297473481624, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: mDisabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 804894297473481624, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: mDisabledTexture
+      value: 
+      objectReference: {fileID: 2100000, guid: 4e4cf26fa05b8d748b35e09043697b8d, type: 2}
     - target: {fileID: 2272408533908540966, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.125
