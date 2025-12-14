@@ -60,6 +60,8 @@ public class DisableLightsOnStart : MonoBehaviour
             Destroy(letThereBeLightsBet.gameObject);
             letThereBeLights.gameObject.SetActive(true);
             Destroy(gameObject);
+
+            GameObject.Find("CameraManager").GetComponent<CameraManager>().skipThisTransition = true;
         }
     }
 

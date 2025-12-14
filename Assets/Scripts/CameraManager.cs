@@ -42,6 +42,8 @@ public class CameraManager : MonoBehaviour
 
     public bool MainCameraView => mMainCameraEnabled;
 
+    public bool skipThisTransition = false;
+
     private void Start()
     {
         mChangeCameraAction = InputSystem.actions.FindAction("CameraChange");
@@ -61,10 +63,12 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
-        if(mChangeCameraAction.WasCompletedThisFrame())
+        if(mChangeCameraAction.WasCompletedThisFrame() && !skipThisTransition)
         {
             Trans();
         }
+
+        skipThisTransition = false;
     }
 
     public void Trans()
