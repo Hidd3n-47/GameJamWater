@@ -3,10 +3,13 @@ using System.Collections;
 using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class CameraManager : MonoBehaviour
 {
+    public UnityEvent OnSwoosh;
+
     [SerializeField]
     private Camera mMainCamera;
 
@@ -66,6 +69,8 @@ public class CameraManager : MonoBehaviour
 
     public void Trans()
     {
+        OnSwoosh?.Invoke();
+
         StartCoroutine(TransitionCoroutine());
         if (mMainCameraEnabled)
         {
