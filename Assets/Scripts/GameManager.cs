@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -11,6 +12,9 @@ using Random = System.Random;
 public class GameManager : MonoBehaviour
 {
     public UnityEvent OnFailedGame;
+
+    [SerializeField]
+    private AudioSource mEndAudio;
 
     [SerializeField] 
     public float mTotalTimeForDay = 60.0f;
@@ -148,6 +152,19 @@ public class GameManager : MonoBehaviour
 
     public void OnGameFailed()
     {
-        OnFailedGame?.Invoke();
+        StartCoroutine(GameLost());
+    }
+
+    IEnumerator GameLost()
+    {
+        float timer = 0.0f;
+        mEndAudio.Play();
+        while (timer < mEndAudio.clip.length)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        SceneManager.LoadSceneAsync("Day1");
     }
 }

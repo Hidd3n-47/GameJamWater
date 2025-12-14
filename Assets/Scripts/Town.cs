@@ -37,6 +37,9 @@ public class Town : MonoBehaviour
 
     private int mLightBulbLevel = 1;
 
+    [SerializeField]
+    GameManager mGameManager;
+
     public bool CanFix => mPercentage <= mYellowPercent;
 
     public void IncreasePercentage(float addition)
@@ -80,6 +83,8 @@ public class Town : MonoBehaviour
         GetComponentsInChildren<TextMeshProUGUI>().First(x => x.name.Contains("TMP")).text = Password;
 
         BulbLevelChanged.AddListener(() => { GetComponent<AudioSource>().Play(); });
+
+        mGameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void Update()
@@ -113,6 +118,11 @@ public class Town : MonoBehaviour
             materials[1] = mMaterials.red;
             mLightTransform.GetComponent<MeshRenderer>().materials = materials;
             bulbLevel = 3;
+
+            if (mPercentage <= 0.0f)
+            {
+                mGameManager.OnGameFailed();
+            }
         }
 
         mPercentage = Math.Max(mPercentage, 0.0f);
