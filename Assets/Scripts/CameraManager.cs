@@ -69,6 +69,11 @@ public class CameraManager : MonoBehaviour
 
     public void Trans()
     {
+        if (Time.timeScale == 0.0f)
+        {
+            return;
+        }
+
         OnSwoosh?.Invoke();
 
         StartCoroutine(TransitionCoroutine());
