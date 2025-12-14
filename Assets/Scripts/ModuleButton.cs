@@ -36,6 +36,8 @@ public class ModuleButton : MonoBehaviour
 
     public void Update()
     {
+        if (Time.timeScale == 0.0f) return;
+
         if (mCameraManager.MainCameraView)
         {
             GetComponent<Outline>().enabled = false;
