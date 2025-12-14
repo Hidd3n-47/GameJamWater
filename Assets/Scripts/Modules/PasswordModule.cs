@@ -63,11 +63,11 @@ public class PasswordModule : IModule
         {
             if (mEntered == mSolution)
             {
-                OnPassedEventHandler?.Invoke();
+                OnPassedEventHandler?.Invoke(this, ModuleId, true);
             }
             else if (mEntered != String.Empty)
             {
-                OnFailedEventHandler?.Invoke();
+                OnPassedEventHandler?.Invoke(this, ModuleId, false);
             }
 
             return;

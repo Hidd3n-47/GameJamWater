@@ -9,9 +9,9 @@ public class IModule : MonoBehaviour
     public Transform mLightTransform;
     private OnPassedOrFailedVariables mPassedOrFailedVariables;
 
-    public UnityEvent OnPassedEventHandler;
+    public UnityEvent<IModule, int, bool> OnPassedEventHandler;
     public UnityEvent OnFailedEventHandler;
-    public UnityEvent<int, bool> OnPuzzleCompletedEventHandler;
+    //public UnityEvent<int, bool> OnPuzzleCompletedEventHandler;
 
     private Light mWhiteLight;
     private Light mGreenLight;
@@ -34,13 +34,14 @@ public class IModule : MonoBehaviour
     public void Register(GameManager manager, int moduleId)
     {
         mModuleId = moduleId;
-        OnPuzzleCompletedEventHandler.AddListener(manager.OnModuleCompleted);
+        OnPassedEventHandler.AddListener(manager.OnModuleCompleted);
+        //OnPuzzleCompletedEventHandler.AddListener(manager.OnModuleCompleted);
     }
 
     private void Awake()
     {
-        OnPassedEventHandler.AddListener(Passed);
-        OnFailedEventHandler.AddListener(Failed);
+        //OnPassedEventHandler.AddListener(Passed);
+        //OnFailedEventHandler.AddListener(Failed);
 
         mPassedOrFailedVariables = GameObject.Find("OnPassedOrFailedVariables").GetComponent<OnPassedOrFailedVariables>();
 
@@ -58,8 +59,8 @@ public class IModule : MonoBehaviour
 
     private void OnDestroy()
     {
-        OnFailedEventHandler.RemoveListener(Failed);
-        OnPassedEventHandler.RemoveListener(Passed);
+        //OnFailedEventHandler.RemoveListener(Failed);
+        //OnPassedEventHandler.RemoveListener(Passed);
     }
 
     protected virtual void InitPuzzle()
@@ -72,7 +73,7 @@ public class IModule : MonoBehaviour
 
     }
 
-    private void Passed()
+    public void Passed()
     {
         // In case the light is still flashing from failing.
         StopAllCoroutines();
@@ -96,12 +97,12 @@ public class IModule : MonoBehaviour
 
         mBlink.BlinkFunc();
 
-        OnPuzzleCompletedEventHandler?.Invoke(mModuleId, true);
+        //OnPuzzleCompletedEventHandler?.Invoke(this, mModuleId, true);
 
         OnPassed();
     }
 
-    private void Failed()
+    public void Failed()
     {
         AudioSource source = GetComponent<AudioSource>();
         if (!(source.isPlaying && source.resource == mPassedOrFailedVariables.failedAudioClip))
@@ -114,7 +115,7 @@ public class IModule : MonoBehaviour
 
         StartCoroutine(LightAnimation());
 
-        OnPuzzleCompletedEventHandler?.Invoke(mModuleId, false);
+        //OnPuzzleCompletedEventHandler?.Invoke(mModuleId, false);
 
         OnFailed();
     }

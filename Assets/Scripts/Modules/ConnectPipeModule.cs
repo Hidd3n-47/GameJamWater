@@ -75,7 +75,7 @@ public class ConnectPipeModule : IModule
 
         if (mNumberCorrect >= mNumberOfPipes)
         {
-            OnPassedEventHandler?.Invoke();
+            OnPassedEventHandler?.Invoke(this, ModuleId, true);
         }
     }
 

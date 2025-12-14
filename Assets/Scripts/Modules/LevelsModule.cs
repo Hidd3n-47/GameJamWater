@@ -109,7 +109,7 @@ public class LevelsModule : IModule
 
         if (mNumberOfPipesLit >= mNumberOfPipes)
         {
-            OnPassedEventHandler?.Invoke();
+            OnPassedEventHandler?.Invoke(this, ModuleId, true);
         }
     }
 

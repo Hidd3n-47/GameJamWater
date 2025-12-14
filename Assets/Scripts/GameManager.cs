@@ -31,22 +31,25 @@ public class GameManager : MonoBehaviour
 
     private readonly List<int> mColorIdOfModules = new();
 
-    public void OnModuleCompleted(int moduleId, bool passed)
+    public void OnModuleCompleted(IModule module, int moduleId, bool passed)
     {
         Town town = mIdToTown[moduleId];
         if (town.CanFix && passed)
         {
             Debug.Log("Well done you fixed it.");
+            module.Passed();
             town.IncreasePercentage(mPercentageForPassing);
         }
         else if(passed)
         {
             Debug.Log("Town not ready to fix, face the consequences.");
+            module.Failed();
             town.DecreasePercentage(mPercentageLostForDoingModuleTooSoon);
         }
         else
         {
             Debug.Log("You just failed, skill issue.");
+            module.Failed();
             town.DecreasePercentage(mPercentageLostForFailing);
         }
     }
@@ -66,7 +69,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(i + " - " + mColorIdOfModules[i]);
         }
 
-        (mModules[0] as PasswordModule).SetPassword(mIdToTown[mColorIdOfModules[0]].Password);
+        (mModules[0] as PasswordModule)?.SetPassword(mIdToTown[mColorIdOfModules[0]].Password);
     }
 
     private void GenerateRandomColorForTowns()

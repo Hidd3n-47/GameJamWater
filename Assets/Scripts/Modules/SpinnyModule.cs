@@ -86,7 +86,7 @@ public class SpinnyModule : IModule
 
             if (mTimer >= mDurationToPass)
             {
-                OnPassedEventHandler?.Invoke();
+                OnPassedEventHandler?.Invoke(this, ModuleId, true);
                 return;
             }
         }
