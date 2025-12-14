@@ -373,6 +373,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c7d4f8ffba5a734da48fd777b3c87c8, type: 3}
+--- !u!4 &106963498 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2382287028744632948, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+  m_PrefabInstance: {fileID: 1286786057}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &156481004
 GameObject:
   m_ObjectHideFlags: 0
@@ -2411,6 +2416,66 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!1001 &1286786057
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2017942423}
+    m_Modifications:
+    - target: {fileID: 2382287028744632948, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382287028744632948, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7377
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382287028744632948, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.262
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382287028744632948, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382287028744632948, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382287028744632948, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382287028744632948, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382287028744632948, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382287028744632948, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382287028744632948, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3045635951291818190, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+      propertyPath: m_Name
+      value: Module_Spinny1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8610345001591176271, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+    - {fileID: 8038464474849988379, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+    - {fileID: 6746445825734881119, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
 --- !u!1001 &1371385952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2787,6 +2852,10 @@ PrefabInstance:
     - target: {fileID: 2134337642287916435, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158024384447888471, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
+      propertyPath: m_text
+      value: 6767
       objectReference: {fileID: 0}
     - target: {fileID: 2158024384447888471, guid: 24f2cb6338c8ed24e8cbee017a3588f5, type: 3}
       propertyPath: m_fontAsset
@@ -3740,6 +3809,7 @@ Transform:
   - {fileID: 329128005}
   - {fileID: 817897018}
   - {fileID: 1205685222}
+  - {fileID: 106963498}
   m_Father: {fileID: 1168029647}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2111677822
