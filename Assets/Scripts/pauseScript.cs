@@ -20,16 +20,16 @@ public class pauseScript : MonoBehaviour
                 Time.timeScale = 1.0f;
                 pauseUI.SetActive(false);
 
-                mainMusic.SetActive(false);
-                ticking.GetComponents<AudioSource>()[1].Pause();
+                mainMusic.SetActive(true);
+                ticking.GetComponents<AudioSource>()[1].Play();
             }
             else
             {
                 Time.timeScale = 0.0f;
                 pauseUI.SetActive(true);
 
-                mainMusic.SetActive(true);
-                ticking.GetComponents<AudioSource>()[1].Play();
+                mainMusic.SetActive(false);
+                ticking.GetComponents<AudioSource>()[1].Pause();
             }
 
             mPaused = !mPaused;
