@@ -951,6 +951,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3003805791527537539, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3003805791527537539, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3045635951291818190, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
       propertyPath: m_Name
       value: Module_Spinny1
@@ -1016,6 +1024,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Module_Fuel1
       objectReference: {fileID: 0}
+    - target: {fileID: 4934472048259460968, guid: 109af91fb2deba64280df5532398fdc4, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4934472048259460968, guid: 109af91fb2deba64280df5532398fdc4, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5124516758986334496, guid: 109af91fb2deba64280df5532398fdc4, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -1043,6 +1059,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1111190523}
     m_Modifications:
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Pitch
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: f4462c7c1e3832f40af22b5f87ed80ac, type: 3}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f4462c7c1e3832f40af22b5f87ed80ac, type: 3}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 152997376137271630, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.16199994
@@ -1228,6 +1268,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1156907102}
     m_Modifications:
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Pitch
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: f4462c7c1e3832f40af22b5f87ed80ac, type: 3}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f4462c7c1e3832f40af22b5f87ed80ac, type: 3}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 152997376137271630, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.12699997
@@ -1655,6 +1719,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 848431566}
     m_Modifications:
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Pitch
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: f4462c7c1e3832f40af22b5f87ed80ac, type: 3}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f4462c7c1e3832f40af22b5f87ed80ac, type: 3}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 152997376137271630, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.355
@@ -2519,6 +2607,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1661000312}
     m_Modifications:
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Pitch
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: f4462c7c1e3832f40af22b5f87ed80ac, type: 3}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f4462c7c1e3832f40af22b5f87ed80ac, type: 3}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 152997376137271630, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -5192,7 +5304,6 @@ MonoBehaviour:
   - {fileID: 655770215}
   - {fileID: 1858212553}
   - {fileID: 816919560}
-  mRand: 0.4
   mMapLightsFlashTime: 0.56
   mMapLightsFlashCount: 4
   mTheInbetween: 1
@@ -5807,6 +5918,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 405774253}
     m_Modifications:
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Pitch
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: f4462c7c1e3832f40af22b5f87ed80ac, type: 3}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f4462c7c1e3832f40af22b5f87ed80ac, type: 3}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 152997376137271630, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.18700004
@@ -7153,6 +7288,22 @@ PrefabInstance:
     - target: {fileID: 595110854340990071, guid: 109af91fb2deba64280df5532398fdc4, type: 3}
       propertyPath: m_Name
       value: Module_Fuel1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147227221916666438, guid: 109af91fb2deba64280df5532398fdc4, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147227221916666438, guid: 109af91fb2deba64280df5532398fdc4, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4934472048259460968, guid: 109af91fb2deba64280df5532398fdc4, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4934472048259460968, guid: 109af91fb2deba64280df5532398fdc4, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8621,7 +8772,7 @@ MonoBehaviour:
   OnFailedGame:
     m_PersistentCalls:
       m_Calls: []
-  mTotalTimeForDay: 60
+  mTotalTimeForDay: 90
   mStartShiftTime: 9
   mEndShiftTime: 17
   mClockTimer: {fileID: 1021332581}
@@ -9421,6 +9572,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1156190777}
     m_Modifications:
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Pitch
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: f4462c7c1e3832f40af22b5f87ed80ac, type: 3}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f4462c7c1e3832f40af22b5f87ed80ac, type: 3}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 152997376137271630, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.027999997
@@ -13094,6 +13269,14 @@ PrefabInstance:
     - target: {fileID: 2382287028744632948, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3003805791527537539, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3003805791527537539, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3045635951291818190, guid: de519029e8665084cabe9ebbc384b11c, type: 3}
       propertyPath: m_Name
