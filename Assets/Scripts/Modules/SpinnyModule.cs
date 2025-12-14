@@ -26,6 +26,7 @@ public class SpinnyModule : IModule
     [SerializeField]
     private float mDecayRate = 3.0f;
 
+    [SerializeField]
     private float mMinAngle = 0.0f;
 
     [SerializeField]
