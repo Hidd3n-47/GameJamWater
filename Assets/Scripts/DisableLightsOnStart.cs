@@ -49,7 +49,7 @@ public class DisableLightsOnStart : MonoBehaviour
 
         timer = 0.0f;
         mVoiceOver.Play();
-        while (timer < mRinging.clip.length)
+        while (timer < mVoiceOver.clip.length)
         {
             timer += Time.deltaTime;
             yield return null;
@@ -57,7 +57,7 @@ public class DisableLightsOnStart : MonoBehaviour
 
         timer = 0.0f;
         mEndCall.Play();
-        while (timer < mRinging.clip.length)
+        while (timer < mEndCall.clip.length)
         {
             timer += Time.deltaTime;
             yield return null;
