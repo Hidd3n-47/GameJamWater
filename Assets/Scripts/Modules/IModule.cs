@@ -29,6 +29,8 @@ public class IModule : MonoBehaviour
         }
     }
 
+    private Blink mBlink;
+
     public void Register(GameManager manager, int moduleId)
     {
         mModuleId = moduleId;
@@ -48,6 +50,8 @@ public class IModule : MonoBehaviour
         mWhiteLight = lights.Where(x => x.name == "White Light").ToArray()[0];
         mGreenLight = lights.Where(x => x.name == "Green Light").ToArray()[0];
         mRedLight = lights.Where(x => x.name == "Red Light").ToArray()[0];
+
+        mBlink = GameObject.Find("Blink").GetComponent<Blink>();
 
         mCurrentActiveLight = mWhiteLight;
     }
@@ -75,6 +79,8 @@ public class IModule : MonoBehaviour
         mLightTransform.GetComponent<MeshRenderer>().material = mPassedOrFailedVariables.passedMaterial;
 
         DisableOnComplete();
+
+        mBlink.BlinkFunc();
 
         OnPuzzleCompletedEventHandler?.Invoke(mModuleId, true);
 
