@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,6 +20,7 @@ public class Clock : MonoBehaviour
     public AudioSource ticking;
     public GameObject musicManager;
 
+    public List<TextMeshProUGUI> mapText = new List<TextMeshProUGUI>();
     public List<Transform> lights = new List<Transform>();
     public Material matWhite;
 
@@ -64,6 +66,11 @@ public class Clock : MonoBehaviour
             var materials = mesh.materials;
             materials[1] = matWhite;
             mesh.materials = materials;
+        }
+
+        foreach (var q in mapText)
+        {
+            q.enabled = false;
         }
 
         while (timer < a.clip.length)
