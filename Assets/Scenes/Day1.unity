@@ -1301,9 +1301,33 @@ PrefabInstance:
     m_TransformParent: {fileID: 1729108146}
     m_Modifications:
     - target: {fileID: 336605727531516158, guid: adc2ac5c5f139ed42a25eb76dcd71ce0, type: 3}
+      propertyPath: matWhite
+      value: 
+      objectReference: {fileID: 2100000, guid: 58c49dbfe42d38e4899ab30db0c6794c, type: 2}
+    - target: {fileID: 336605727531516158, guid: adc2ac5c5f139ed42a25eb76dcd71ce0, type: 3}
       propertyPath: mGameManager
       value: 
       objectReference: {fileID: 1551857430}
+    - target: {fileID: 336605727531516158, guid: adc2ac5c5f139ed42a25eb76dcd71ce0, type: 3}
+      propertyPath: lights.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 336605727531516158, guid: adc2ac5c5f139ed42a25eb76dcd71ce0, type: 3}
+      propertyPath: 'lights.Array.data[0]'
+      value: 
+      objectReference: {fileID: 848431566}
+    - target: {fileID: 336605727531516158, guid: adc2ac5c5f139ed42a25eb76dcd71ce0, type: 3}
+      propertyPath: 'lights.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1111190523}
+    - target: {fileID: 336605727531516158, guid: adc2ac5c5f139ed42a25eb76dcd71ce0, type: 3}
+      propertyPath: 'lights.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1156190777}
+    - target: {fileID: 336605727531516158, guid: adc2ac5c5f139ed42a25eb76dcd71ce0, type: 3}
+      propertyPath: 'lights.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1156907102}
     - target: {fileID: 2641994234267048416, guid: adc2ac5c5f139ed42a25eb76dcd71ce0, type: 3}
       propertyPath: m_Name
       value: Clock_1
@@ -3232,6 +3256,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 66022560}
     m_Modifications:
+    - target: {fileID: 336605727531516158, guid: adc2ac5c5f139ed42a25eb76dcd71ce0, type: 3}
+      propertyPath: ticking
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2641994234267048416, guid: adc2ac5c5f139ed42a25eb76dcd71ce0, type: 3}
       propertyPath: m_Name
       value: Clock_1
@@ -7851,6 +7879,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 454087393}
     m_Modifications:
+    - target: {fileID: 336605727531516158, guid: adc2ac5c5f139ed42a25eb76dcd71ce0, type: 3}
+      propertyPath: ticking
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2641994234267048416, guid: adc2ac5c5f139ed42a25eb76dcd71ce0, type: 3}
       propertyPath: m_Name
       value: Clock_1

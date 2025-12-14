@@ -17,7 +17,10 @@ public class Clock : MonoBehaviour
     private bool mClockingOutAlready = false;
 
     public AudioSource ticking;
+    public GameObject musicManager;
 
+    public List<Transform> lights = new List<Transform>();
+    public Material matWhite;
 
     void Start()
     {
@@ -47,11 +50,22 @@ public class Clock : MonoBehaviour
         Time.timeScale = 0.0f;
 
         Destroy(ticking);
+        Destroy(musicManager);
 
         float timer = 0.0f;
 
         var a = GetComponent<AudioSource>();
             a.Play();
+
+
+        foreach (var f in lights)
+        {
+            var mesh = f.GetComponent<MeshRenderer>();
+            var materials = mesh.materials;
+            materials[1] = matWhite;
+            mesh.materials = materials;
+        }
+
         while (timer < a.clip.length)
         {
             timer += Time.deltaTime;
