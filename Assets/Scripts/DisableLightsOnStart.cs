@@ -10,6 +10,7 @@ public class DisableLightsOnStart : MonoBehaviour
     public UnityEvent OnLightTurnedOn;
 
     public Transform noLights;
+    public Transform noLightsDisable;
     public Transform letThereBeLightsBet;
     public Transform letThereBeLights;
 
@@ -87,7 +88,7 @@ public class DisableLightsOnStart : MonoBehaviour
             }
         }
 
-        noLights.gameObject.SetActive(true);
+        Destroy(noLightsDisable.gameObject);
         letThereBeLightsBet.gameObject.SetActive(true);
 
         if (mPlayAudio)
@@ -106,9 +107,8 @@ public class DisableLightsOnStart : MonoBehaviour
         }
 
         Destroy(letThereBeLightsBet.gameObject);
-        Destroy(noLights.gameObject);
         f.gameObject.SetActive(true);
-
+        Destroy(gameObject);
     }
 
 

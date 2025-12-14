@@ -13,14 +13,14 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnFailedGame;
 
     [SerializeField] 
-    private float mTotalTimeForDay = 60.0f;
+    public float mTotalTimeForDay = 60.0f;
 
-    private float mDayTimer;
+    public float mDayTimer;
 
     [SerializeField]
-    private float mStartShiftTime = 9.0f;
+    public float mStartShiftTime = 9.0f;
     [SerializeField]
-    private float mEndShiftTime = 17.0f;
+    public float mEndShiftTime = 17.0f;
     [SerializeField]
     private TextMeshProUGUI mClockTimer;
 
@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     List<IModule> mModules;
+
+    public float GameTime => mDayTimer;
 
     private readonly Dictionary<int, Town> mIdToTown = new();
 
