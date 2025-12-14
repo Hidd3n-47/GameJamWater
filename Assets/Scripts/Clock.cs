@@ -21,7 +21,15 @@ public class Clock : MonoBehaviour
     public GameObject musicManager;
 
     public List<TextMeshProUGUI> mapText = new List<TextMeshProUGUI>();
-    public List<Transform> lights = new List<Transform>();
+    public MeshRenderer A;
+    public MeshRenderer B;
+    public MeshRenderer C;
+    public MeshRenderer D;
+    public MeshRenderer AA;
+    public MeshRenderer BB;
+    public MeshRenderer CC;
+    public MeshRenderer DD;
+    public MeshRenderer[] lights;
     public Material matWhite;
 
     void Start()
@@ -59,13 +67,31 @@ public class Clock : MonoBehaviour
         var a = GetComponent<AudioSource>();
             a.Play();
 
+            {
+
+                var materials = A.materials;
+                materials[1] = matWhite;
+                A.materials = materials;
+
+                A.gameObject.SetActive(false);
+        }
+
+        A.gameObject.SetActive(false);
+        B.gameObject.SetActive(false);
+        C.gameObject.SetActive(false);
+        D.gameObject.SetActive(false);
+
+        AA.gameObject.SetActive(true);
+        BB.gameObject.SetActive(true);
+        CC.gameObject.SetActive(true);
+        DD.gameObject.SetActive(true);
+
 
         foreach (var f in lights)
         {
-            var mesh = f.GetComponent<MeshRenderer>();
-            var materials = mesh.materials;
+            var materials = f.materials;
             materials[1] = matWhite;
-            mesh.materials = materials;
+            f.materials = materials;
         }
 
         foreach (var q in mapText)
