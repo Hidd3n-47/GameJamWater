@@ -178,6 +178,6 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadSceneAsync("Day1");
+        SceneManager.LoadSceneAsync("MainMenu");
     }
 }
