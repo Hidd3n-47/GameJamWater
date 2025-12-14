@@ -60,6 +60,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 336605727531516158}
   m_SourcePrefab: {fileID: 100100000, guid: 868378558e2565b47b6ec870a7183fee, type: 3}
+--- !u!4 &2632560771454050141 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 928843238657670124, guid: 868378558e2565b47b6ec870a7183fee, type: 3}
+  m_PrefabInstance: {fileID: 2912516227858638001}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2641994234267048416 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 868378558e2565b47b6ec870a7183fee, type: 3}
@@ -78,6 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mGameManager: {fileID: 0}
+  mHourHand: {fileID: 2632560771454050141}
   mMinuteHand: {fileID: 6330013453492506956}
 --- !u!4 &6330013453492506956 stripped
 Transform:
