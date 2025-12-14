@@ -13,11 +13,14 @@ public class Clock : MonoBehaviour
 
     void Start()
     {
-        mHourHand.localRotation = Quaternion.Euler(0.0f, 0.0f, mGameManager.mStartShiftTime / 12.0f * 360.0f);
+        if (mHourHand)
+            mHourHand.localRotation = Quaternion.Euler(0.0f, 0.0f, mGameManager.mStartShiftTime / 12.0f * 360.0f);
     }
 
     void Update()
     {
+        if (!mGameManager) return;
+
         float time = math.lerp(mGameManager.mStartShiftTime, mGameManager.mEndShiftTime, mGameManager.mDayTimer / mGameManager.mTotalTimeForDay);
 
         int minutes = (int)((time - (int)time) * 60.0f);
