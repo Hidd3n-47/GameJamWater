@@ -24,7 +24,7 @@ public class MenuManager : MonoBehaviour
     public void StartGame()
     {
 
-        SceneManager.LoadSceneAsync("SampleScene");
+        SceneManager.LoadSceneAsync("Day1");
 
     }
     public void QuitGame()

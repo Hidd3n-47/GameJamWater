@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class DisableLightsOnStart : MonoBehaviour
 {
-    UnityEvent OnLightTurnedOn;
+    public UnityEvent OnLightTurnedOn;
 
     public Transform noLights;
     public Transform letThereBeLightsBet;
