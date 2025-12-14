@@ -42,16 +42,6 @@ public class PasswordModule : IModule
         SetEnteredText(String.Empty);
     }
 
-    protected override void DisableOnComplete()
-    {
-        foreach (ModuleButton button in GetComponentsInChildren<ModuleButton>())
-        {
-            button.enabled = false;
-        }
-
-        base.DisableOnComplete();
-    }
-
     protected override void OnFailed()
     {
         SetEnteredText(String.Empty);

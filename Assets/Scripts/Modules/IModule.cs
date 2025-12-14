@@ -62,6 +62,16 @@ public class IModule : MonoBehaviour
         OnPassedEventHandler.RemoveListener(Passed);
     }
 
+    protected virtual void InitPuzzle()
+    {
+
+    }
+
+    protected virtual void DestroyPuzzle()
+    {
+
+    }
+
     private void Passed()
     {
         // In case the light is still flashing from failing.
@@ -78,7 +88,8 @@ public class IModule : MonoBehaviour
         ChangeActiveLight(mGreenLight);
         mLightTransform.GetComponent<MeshRenderer>().material = mPassedOrFailedVariables.passedMaterial;
 
-        DisableOnComplete();
+        DestroyPuzzle();
+        InitPuzzle();
 
         mBlink.BlinkFunc();
 
@@ -152,10 +163,5 @@ public class IModule : MonoBehaviour
     protected virtual void OnFailed()
     {
         Debug.Log("Failed module!");
-    }
-
-    protected virtual void DisableOnComplete()
-    {
-        gameObject.GetComponent<IModule>().enabled = false;
     }
 }
