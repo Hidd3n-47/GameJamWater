@@ -22,6 +22,11 @@ public class ModuleButton : MonoBehaviour
     public bool Hovering => mHovering;
     public bool MouseDown => mMouseDown;
 
+    public void Reset()
+    {
+        mMouseDown = false;
+    }
+
     private void Awake()
     {
         mMouseAction  = InputSystem.actions.FindAction("MousePosition");
@@ -38,6 +43,11 @@ public class ModuleButton : MonoBehaviour
         {
             GetComponent<Outline>().enabled = false;
             return;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            mMouseDown = true;
         }
 
         mHovering = false;
@@ -63,10 +73,6 @@ public class ModuleButton : MonoBehaviour
 
         if (!mButtonAction.WasCompletedThisFrame())
         {
-            if (mButtonAction.IsInProgress())
-            {
-                mMouseDown = true;
-            }
             return;
         }
 
