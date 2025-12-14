@@ -1,4 +1,7 @@
 using System;
+using System.Linq;
+using TMPro;
+using Unity.Collections;
 using UnityEngine;
 
 public class Town : MonoBehaviour
@@ -22,6 +25,8 @@ public class Town : MonoBehaviour
     private Material mDisabledTexture;
 
     private TownLightMaterials mMaterials;
+
+    private TextMeshProUGUI mText;
 
     public bool CanFix => mPercentage <= mYellowPercent;
 
@@ -54,6 +59,8 @@ public class Town : MonoBehaviour
         }
 
         mMaterials = GameObject.Find("TownLightMaterials").GetComponent<TownLightMaterials>();
+
+        mText = GetComponentsInChildren<TextMeshProUGUI>().First(x => !x.name.Contains("TMP"));
     }
 
     private void Update()
@@ -84,6 +91,6 @@ public class Town : MonoBehaviour
             mLightTransform.GetComponent<MeshRenderer>().materials = materials;
         }
 
-
+        mText.text = "[" + (int)mPercentage + "%]";
     }
 }
