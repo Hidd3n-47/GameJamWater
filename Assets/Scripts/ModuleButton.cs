@@ -10,7 +10,6 @@ public class ModuleButton : MonoBehaviour
     [SerializeField]
     private int mButtonId;
 
-    Camera mCamera;
     private CameraManager mCameraManager;
 
     private InputAction mMouseAction;
@@ -27,12 +26,10 @@ public class ModuleButton : MonoBehaviour
         mMouseDown = false;
     }
 
-    private void Awake()
+    private void Start()
     {
         mMouseAction  = InputSystem.actions.FindAction("MousePosition");
         mButtonAction = InputSystem.actions.FindAction("MouseDown");
-
-        mCamera = Camera.main;
 
         mCameraManager = GameObject.Find("CameraManager").GetComponent<CameraManager>();
     }
@@ -57,7 +54,7 @@ public class ModuleButton : MonoBehaviour
 
 
         mHovering = false;
-        Ray ray = mCamera.ScreenPointToRay(mMouseAction.ReadValue<Vector2>());
+        Ray ray = Camera.main.ScreenPointToRay(mMouseAction.ReadValue<Vector2>());
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo))
         {
