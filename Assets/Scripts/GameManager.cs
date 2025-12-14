@@ -168,8 +168,10 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         float timer = 0.0f;
+
         mEndAudio.Play();
-        while (timer < mEndAudio.clip.length)
+
+        while (timer < 10)
         {
             timer += Time.deltaTime;
             yield return null;

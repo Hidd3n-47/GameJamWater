@@ -57,8 +57,6 @@ public class Clock : MonoBehaviour
 
     IEnumerator Clockout()
     {
-        Time.timeScale = 0.0f;
-
         Destroy(ticking);
         Destroy(musicManager);
 
