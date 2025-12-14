@@ -42,6 +42,7 @@ public class Clock : MonoBehaviour
 
     IEnumerator Clockout()
     {
+        Time.timeScale = 0.0f;
         float timer = 0.0f;
 
         var a = GetComponent<AudioSource>();
