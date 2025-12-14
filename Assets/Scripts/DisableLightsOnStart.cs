@@ -26,17 +26,22 @@ public class DisableLightsOnStart : MonoBehaviour
 
     [SerializeField] private bool mPlayAudio = true;
 
+    [SerializeField] private AudioSource mRinging;
+    [SerializeField] private AudioSource mVoiceOver;
+    [SerializeField] private AudioSource mEndCall;
+
     private void Start()
     {
         {
             StartCoroutine(help());
-
         }
     }
 
     private void PlayVoiceLine()
     {
-        GetComponent<AudioSource>().Play();
+        if(mRinging.clip) mRinging.Play();
+        if (mVoiceOver.clip) mVoiceOver.Play();
+        if (mEndCall.clip) mEndCall.Play();
     }
 
     private IEnumerator help()
@@ -70,9 +75,11 @@ public class DisableLightsOnStart : MonoBehaviour
             PlayVoiceLine();
         }
 
+        float addedtime = mPlayAudio ? mRinging.clip.length + mVoiceOver.clip.length + mEndCall.clip.length : 0.0f;
+
         float asdfa = 0.0f;
 
-        while (asdfa < mTheInbetween)
+        while (asdfa < mTheInbetween + addedtime)
         {
             asdfa += Time.deltaTime;
             yield return null;
