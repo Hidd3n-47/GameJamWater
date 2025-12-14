@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 {
     public UnityEvent OnFailedGame;
 
+    [SerializeField] private Transform t;
+
     [SerializeField]
     private AudioSource mEndAudio;
 
@@ -150,8 +152,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private bool failing = false;
+
     public void OnGameFailed()
     {
+        if (failing) return;
+
+        failing = true;
         StartCoroutine(GameLost());
     }
 

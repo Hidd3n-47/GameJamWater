@@ -10694,6 +10694,7 @@ MonoBehaviour:
   OnFailedGame:
     m_PersistentCalls:
       m_Calls: []
+  t: {fileID: 0}
   mEndAudio: {fileID: 1551857431}
   mTotalTimeForDay: 90
   mDayTimer: 0
