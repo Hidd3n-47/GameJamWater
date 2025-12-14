@@ -90,6 +90,9 @@ public class IModule : MonoBehaviour
 
         DestroyPuzzle();
         InitPuzzle();
+        StartCoroutine(LightAnimationPassed());
+        //ChangeActiveLight(mWhiteLight);
+        //mLightTransform.GetComponent<MeshRenderer>().material = mPassedOrFailedVariables.standardMaterial;
 
         mBlink.BlinkFunc();
 
@@ -115,6 +118,38 @@ public class IModule : MonoBehaviour
 
         OnFailed();
     }
+
+    private IEnumerator LightAnimationPassed()
+    {
+        MeshRenderer meshRenderer = mLightTransform.GetComponent<MeshRenderer>();
+
+        for (int i = 0; i < mPassedOrFailedVariables.numberOfFlashWhenFailed; i++)
+        {
+            float timer = 0.0f;
+
+            meshRenderer.material = mPassedOrFailedVariables.passedMaterial;
+            ChangeActiveLight(mGreenLight);
+            while (timer < mPassedOrFailedVariables.timeFailedFlash)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            timer = 0.0f;
+
+            meshRenderer.material = mPassedOrFailedVariables.standardMaterial;
+            ChangeActiveLight(mWhiteLight);
+            while (timer < mPassedOrFailedVariables.timeBetweenFlash)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        ChangeActiveLight(mWhiteLight);
+        meshRenderer.material = mPassedOrFailedVariables.standardMaterial;
+    }
+
 
     private IEnumerator LightAnimation()
     {
