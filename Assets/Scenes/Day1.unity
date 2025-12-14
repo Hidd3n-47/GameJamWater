@@ -1309,6 +1309,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1551857430}
     - target: {fileID: 336605727531516158, guid: adc2ac5c5f139ed42a25eb76dcd71ce0, type: 3}
+      propertyPath: musicManager
+      value: 
+      objectReference: {fileID: 1699554285}
+    - target: {fileID: 336605727531516158, guid: adc2ac5c5f139ed42a25eb76dcd71ce0, type: 3}
       propertyPath: lights.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -6430,7 +6434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &783477584
 Transform:
   m_ObjectHideFlags: 0
@@ -10729,7 +10733,7 @@ MonoBehaviour:
       m_Calls: []
   t: {fileID: 0}
   mEndAudio: {fileID: 1551857431}
-  mTotalTimeForDay: 90
+  mTotalTimeForDay: 10
   mDayTimer: 0
   mStartShiftTime: 9
   mEndShiftTime: 17
@@ -12547,7 +12551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1729108146
 Transform:
   m_ObjectHideFlags: 0
