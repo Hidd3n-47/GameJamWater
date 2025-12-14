@@ -41,6 +41,12 @@ public class LevelsModule : IModule
         InitPuzzle();
     }
 
+    protected override void OnFailed()
+    {
+        DestroyPuzzle();
+        InitPuzzle();
+    }
+
     protected override void InitPuzzle()
     {
         mNumberOfPipesLit = 0;
