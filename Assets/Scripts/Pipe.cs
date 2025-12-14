@@ -37,7 +37,7 @@ public class Pipe : MonoBehaviour
         GetComponentInChildren<ModuleButton>().OnButtonPressedEvent.RemoveListener(OnClicked);
     }
 
-    private void OnClicked(int buttonId)
+    public void OnClicked(int buttonId)
     {
         if (!mModule.isActiveAndEnabled)
         {

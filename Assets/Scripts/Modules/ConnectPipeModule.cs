@@ -16,6 +16,7 @@ public class ConnectPipeModule : IModule
 
     [SerializeField]
     private Transform[] mConnections = { null, null };
+    private List<Transform> mSpawnedPipes = new();
 
     private int mNumberOfPipes = -1;
     private int mNumberCorrect = 0;
@@ -67,6 +68,13 @@ public class ConnectPipeModule : IModule
                 Destroy(mInstances[x,y].gameObject);
             }
         }
+    }
+
+    protected override void OnFailed()
+    {
+        int rand = Random.Range(0, mSpawnedPipes.Count);
+
+        mSpawnedPipes[rand].GetComponent<Pipe>().OnClicked(0);
     }
 
     public void PipeInCorrectPosition()
@@ -199,6 +207,8 @@ public class ConnectPipeModule : IModule
                 Transform instance = Instantiate(node.prefab, spawnPoint.position, Quaternion.identity, spawnPoint);
                 instance.GetComponent<Pipe>().Init(this, node.rotation, node.prefab == mConnections[1]);
                 mInstances[x, y] = instance;
+
+                mSpawnedPipes.Add(instance);
             }
         }
     }
