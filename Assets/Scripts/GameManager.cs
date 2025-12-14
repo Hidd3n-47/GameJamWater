@@ -65,6 +65,8 @@ public class GameManager : MonoBehaviour
             mModules[i].Register(this, mColorIdOfModules[i]);
             Debug.Log(i + " - " + mColorIdOfModules[i]);
         }
+
+        (mModules[0] as PasswordModule).SetPassword(mIdToTown[mColorIdOfModules[0]].Password);
     }
 
     private void GenerateRandomColorForTowns()

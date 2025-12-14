@@ -3,9 +3,12 @@ using System.Linq;
 using TMPro;
 using Unity.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Town : MonoBehaviour
 {
+    public string Password;
+
     float mPercentage = 100.0f;
 
     [SerializeField]
@@ -61,6 +64,14 @@ public class Town : MonoBehaviour
         mMaterials = GameObject.Find("TownLightMaterials").GetComponent<TownLightMaterials>();
 
         mText = GetComponentsInChildren<TextMeshProUGUI>().First(x => !x.name.Contains("TMP"));
+
+        Password = String.Empty;
+        for (int i = 0; i < 4; ++i)
+        {
+            Password += Random.Range(0, 9);
+        }
+
+        GetComponentsInChildren<TextMeshProUGUI>().First(x => x.name.Contains("TMP")).text = Password;
     }
 
     private void Update()

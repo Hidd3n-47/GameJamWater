@@ -1,11 +1,16 @@
 using TMPro;
 using System;
 using UnityEngine;
-
+using UnityEngine.Windows.WebCam;
 using Random = UnityEngine.Random;
 
 public class PasswordModule : IModule
 {
+    public void SetPassword(string str)
+    {
+        mSolution = str;
+    }
+
     private string mSolution = String.Empty;
     private string mEntered  = String.Empty;
 
@@ -19,11 +24,6 @@ public class PasswordModule : IModule
         foreach (ModuleButton button in GetComponentsInChildren<ModuleButton>())
         {
             button.OnButtonPressedEvent.AddListener(OnButtonPressed);
-        }
-
-        for (int i = 0; i < 4; ++i)
-        {
-            mSolution += Random.Range(0, 9);
         }
 
         Debug.Log("The password is: " + mSolution);
