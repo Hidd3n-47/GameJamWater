@@ -34,6 +34,9 @@ public class SpinnyModule : IModule
 
     private bool mMouseDown = false;
 
+    [SerializeField]
+    private float mAngleDroppedOnFailed = 30.0f;
+
     private bool mRotationDisabled;
     public void DisableRotation()
     {
@@ -76,6 +79,13 @@ public class SpinnyModule : IModule
         mValve.eulerAngles = Vector3.zero;
 
         mSolutionBox.eulerAngles = new Vector3(0.0f, UnityEngine.Random.Range(0.0f, mMaxAngle), 0.0f);
+    }
+
+    protected override void OnFailed()
+    {
+        Debug.Log("Failed module!");
+        mNeedle.eulerAngles = new Vector3(0.0f, mNeedle.eulerAngles.y - mDecayRate * Time.deltaTime - mAngleDroppedOnFailed, 0.0f);
+        mTimer = 0.0f;
     }
 
     private void Update()
