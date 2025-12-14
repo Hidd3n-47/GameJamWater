@@ -16,6 +16,8 @@ public class Clock : MonoBehaviour
 
     private bool mClockingOutAlready = false;
 
+    public AudioSource ticking;
+
 
     void Start()
     {
@@ -43,6 +45,9 @@ public class Clock : MonoBehaviour
     IEnumerator Clockout()
     {
         Time.timeScale = 0.0f;
+
+        Destroy(ticking);
+
         float timer = 0.0f;
 
         var a = GetComponent<AudioSource>();

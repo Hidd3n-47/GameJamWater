@@ -91,6 +91,7 @@ MonoBehaviour:
   mGameManager: {fileID: 0}
   mHourHand: {fileID: 2632560771454050141}
   mMinuteHand: {fileID: 6330013453492506956}
+  ticking: {fileID: 8317413735891736824}
 --- !u!82 &5899242494159379959
 AudioSource:
   m_ObjectHideFlags: 0
