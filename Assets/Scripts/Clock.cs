@@ -57,6 +57,8 @@ public class Clock : MonoBehaviour
 
     IEnumerator Clockout()
     {
+        Time.timeScale = 0.0f;
+
         Destroy(ticking);
         Destroy(musicManager);
 
@@ -99,7 +101,7 @@ public class Clock : MonoBehaviour
 
         while (timer < a.clip.length)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             yield return null;
         }
 
