@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
@@ -42,7 +43,29 @@ public class CameraManager : MonoBehaviour
 
     public bool MainCameraView => mMainCameraEnabled;
 
-    public bool skipThisTransition = false;
+    public bool s = false;
+
+    public bool skipThisTransition
+    {
+        get => s;
+        set
+        {
+            s = value;
+            StartCoroutine(ResetS());
+        }
+    }
+
+    IEnumerator ResetS()
+    {
+        float mTimer = 0.0f;
+        while (mTimer < 0.3f)
+        {
+            mTimer += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        s = false;
+    }
 
     private void Start()
     {
@@ -67,8 +90,6 @@ public class CameraManager : MonoBehaviour
         {
             Trans();
         }
-
-        skipThisTransition = false;
     }
 
     public void Trans()
