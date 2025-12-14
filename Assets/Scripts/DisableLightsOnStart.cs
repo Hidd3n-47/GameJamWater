@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(AudioSource))]
 public class DisableLightsOnStart : MonoBehaviour
 {
     public UnityEvent OnLightTurnedOn;
@@ -22,12 +24,19 @@ public class DisableLightsOnStart : MonoBehaviour
     [SerializeField] private Material mMatWhite;
     [SerializeField] private Material mMatGreen;
 
+    [SerializeField] private bool mPlayAudio = true;
+
     private void Start()
     {
         {
             StartCoroutine(help());
 
         }
+    }
+
+    private void PlayVoiceLine()
+    {
+        GetComponent<AudioSource>().Play();
     }
 
     private IEnumerator help()
@@ -56,6 +65,11 @@ public class DisableLightsOnStart : MonoBehaviour
         noLights.gameObject.SetActive(true);
         letThereBeLightsBet.gameObject.SetActive(true);
 
+        if (mPlayAudio)
+        {
+            PlayVoiceLine();
+        }
+
         float asdfa = 0.0f;
 
         while (asdfa < mTheInbetween)
@@ -67,6 +81,7 @@ public class DisableLightsOnStart : MonoBehaviour
         Destroy(letThereBeLightsBet.gameObject);
         Destroy(noLights.gameObject);
         f.gameObject.SetActive(true);
+
     }
 
 
