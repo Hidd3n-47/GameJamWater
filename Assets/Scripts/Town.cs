@@ -91,6 +91,8 @@ public class Town : MonoBehaviour
             mLightTransform.GetComponent<MeshRenderer>().materials = materials;
         }
 
+        mPercentage = Math.Max(mPercentage, 0.0f);
+
         mText.text = "[" + (int)mPercentage + "%]";
     }
 }

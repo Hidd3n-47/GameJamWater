@@ -3,7 +3,12 @@ guid: 20cdd81c6e8ae40428c64e4178f73ff7
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Module_Spin
+    second: {fileID: -876546973899608171, guid: 914161171c0c5674db39d9a6da615425, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
