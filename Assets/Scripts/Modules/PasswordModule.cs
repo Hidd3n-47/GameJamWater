@@ -9,6 +9,8 @@ public class PasswordModule : IModule
     public void SetPassword(string str)
     {
         mSolution = str;
+
+        Debug.Log("Set Password to: " + str);
     }
 
     private string mSolution = String.Empty;
