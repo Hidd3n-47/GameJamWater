@@ -10691,6 +10691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25d1e9e250094384998fb69ffbd761ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NextScene: Day2
   OnFailedGame:
     m_PersistentCalls:
       m_Calls: []

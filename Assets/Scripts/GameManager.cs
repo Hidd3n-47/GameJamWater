@@ -11,6 +11,8 @@ using Random = System.Random;
 
 public class GameManager : MonoBehaviour
 {
+    public String NextScene = "Day";
+
     public UnityEvent OnFailedGame;
 
     [SerializeField] private Transform t;
