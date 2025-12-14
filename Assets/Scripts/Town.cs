@@ -32,7 +32,7 @@ public class Town : MonoBehaviour
 
     public void IncreasePercentage(float addition)
     {
-        mPercentage = Math.Max(mPercentage + addition, 100.0f);
+        mPercentage = Math.Min(mPercentage + addition, 100.0f);
     }
 
     public void DecreasePercentage(float decrease)

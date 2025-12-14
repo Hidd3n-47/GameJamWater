@@ -50,6 +50,12 @@ public class ModuleButton : MonoBehaviour
             mMouseDown = true;
         }
 
+        if (Input.GetMouseButtonUp(0))
+        {
+            mMouseDown = false;
+        }
+
+
         mHovering = false;
         Ray ray = mCamera.ScreenPointToRay(mMouseAction.ReadValue<Vector2>());
 
