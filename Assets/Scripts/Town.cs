@@ -3,10 +3,14 @@ using System.Linq;
 using TMPro;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
+[RequireComponent(typeof(AudioSource))]
 public class Town : MonoBehaviour
 {
+    public UnityEvent BulbLevelChanged;
+
     public string Password;
 
     float mPercentage = 100.0f;
@@ -30,6 +34,8 @@ public class Town : MonoBehaviour
     private TownLightMaterials mMaterials;
 
     private TextMeshProUGUI mText;
+
+    private int mLightBulbLevel = 1;
 
     public bool CanFix => mPercentage <= mYellowPercent;
 
@@ -72,10 +78,14 @@ public class Town : MonoBehaviour
         }
 
         GetComponentsInChildren<TextMeshProUGUI>().First(x => x.name.Contains("TMP")).text = Password;
+
+        BulbLevelChanged.AddListener(() => { GetComponent<AudioSource>().Play(); });
     }
 
     private void Update()
     {
+        int bulbLevel;
+
         if (mDisabled)
         {
             return;
@@ -88,22 +98,32 @@ public class Town : MonoBehaviour
             var materials = mLightTransform.GetComponent<MeshRenderer>().materials;
             materials[1] = mMaterials.green;
             mLightTransform.GetComponent<MeshRenderer>().materials = materials;
+            bulbLevel = 1;
         }
         else if (mPercentage > mRedPercent)
         {
             var materials = mLightTransform.GetComponent<MeshRenderer>().materials;
             materials[1] = mMaterials.yellow;
             mLightTransform.GetComponent<MeshRenderer>().materials = materials;
+            bulbLevel = 2;
         }
         else
         {
             var materials = mLightTransform.GetComponent<MeshRenderer>().materials;
             materials[1] = mMaterials.red;
             mLightTransform.GetComponent<MeshRenderer>().materials = materials;
+            bulbLevel = 3;
         }
 
         mPercentage = Math.Max(mPercentage, 0.0f);
 
         mText.text = "[" + (int)mPercentage + "%]";
+
+        if (bulbLevel > mLightBulbLevel)
+        {
+            BulbLevelChanged?.Invoke();
+        }
+
+        mLightBulbLevel = bulbLevel;
     }
 }

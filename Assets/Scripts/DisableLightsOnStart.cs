@@ -13,7 +13,6 @@ public class DisableLightsOnStart : MonoBehaviour
 
     public List<Transform> mapLights;
 
-    [SerializeField] private float mRand = 0.14f;
     [SerializeField] private float mMapLightsFlashTime = 0.14f;
     [SerializeField] private int mMapLightsFlashCount = 4;
 
