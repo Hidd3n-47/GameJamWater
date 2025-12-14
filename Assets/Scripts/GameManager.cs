@@ -1,11 +1,29 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using Random = System.Random;
 
 public class GameManager : MonoBehaviour
 {
+    public UnityEvent OnFailedGame;
+
+    [SerializeField] 
+    private float mTotalTimeForDay = 60.0f;
+
+    private float mDayTimer;
+
+    [SerializeField]
+    private float mStartShiftTime = 9.0f;
+    [SerializeField]
+    private float mEndShiftTime = 17.0f;
+    [SerializeField]
+    private TextMeshProUGUI mClockTimer;
+
     [Header("Values to tweak")]
     [SerializeField]
     private float mPercentageForPassing = 100.0f;
@@ -108,5 +126,26 @@ public class GameManager : MonoBehaviour
 
             randomUniqueList.Remove(randomUniqueList[0]);
         }
+    }
+
+    private void Update()
+    {
+        mDayTimer += Time.deltaTime;
+
+        float time = math.lerp(mStartShiftTime, mEndShiftTime, mDayTimer / mTotalTimeForDay);
+
+        int minutes = (int)((time - (int)time) * 60.0f);
+
+        mClockTimer.text = ((int)time) + ":" + (minutes < 10 ? "0" + minutes : minutes);
+
+        if (time > mEndShiftTime)
+        {
+            Debug.Log("get out of here time.");
+        }
+    }
+
+    public void OnGameFailed()
+    {
+        OnFailedGame?.Invoke();
     }
 }
