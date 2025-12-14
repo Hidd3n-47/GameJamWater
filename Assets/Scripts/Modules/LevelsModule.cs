@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class LevelsModule : IModule
 {
@@ -35,12 +36,30 @@ public class LevelsModule : IModule
 
         mNumberOfPipes = mRightSideNodes.Length;
 
+        mStartingPitch = mSource.pitch;
+
+        InitPuzzle();
+    }
+
+    protected override void InitPuzzle()
+    {
+        mNumberOfPipesLit = 0;
+        mHoldTime = 0.0f;
+
+        foreach (var t in mLeftSideNodes)
+        {
+            t.gameObject.SetActive(true);
+        }
+
         foreach (var t in mRightSideNodes)
         {
             t.gameObject.SetActive(false);
         }
+    }
 
-        mStartingPitch = mSource.pitch;
+    protected override void DestroyPuzzle()
+    {
+        InitPuzzle();
     }
 
     private void Update()

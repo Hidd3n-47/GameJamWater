@@ -29,6 +29,8 @@ public class IModule : MonoBehaviour
         }
     }
 
+    private Blink mBlink;
+
     public void Register(GameManager manager, int moduleId)
     {
         mModuleId = moduleId;
@@ -49,6 +51,8 @@ public class IModule : MonoBehaviour
         mGreenLight = lights.Where(x => x.name == "Green Light").ToArray()[0];
         mRedLight = lights.Where(x => x.name == "Red Light").ToArray()[0];
 
+        mBlink = GameObject.Find("Blink").GetComponent<Blink>();
+
         mCurrentActiveLight = mWhiteLight;
     }
 
@@ -56,6 +60,16 @@ public class IModule : MonoBehaviour
     {
         OnFailedEventHandler.RemoveListener(Failed);
         OnPassedEventHandler.RemoveListener(Passed);
+    }
+
+    protected virtual void InitPuzzle()
+    {
+
+    }
+
+    protected virtual void DestroyPuzzle()
+    {
+
     }
 
     private void Passed()
@@ -74,7 +88,10 @@ public class IModule : MonoBehaviour
         ChangeActiveLight(mGreenLight);
         mLightTransform.GetComponent<MeshRenderer>().material = mPassedOrFailedVariables.passedMaterial;
 
-        DisableOnComplete();
+        DestroyPuzzle();
+        InitPuzzle();
+
+        mBlink.BlinkFunc();
 
         OnPuzzleCompletedEventHandler?.Invoke(mModuleId, true);
 
@@ -146,10 +163,5 @@ public class IModule : MonoBehaviour
     protected virtual void OnFailed()
     {
         Debug.Log("Failed module!");
-    }
-
-    protected virtual void DisableOnComplete()
-    {
-        gameObject.GetComponent<IModule>().enabled = false;
     }
 }

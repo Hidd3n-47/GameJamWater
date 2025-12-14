@@ -12,6 +12,8 @@ public class ConnectPipeModule : IModule
     [SerializeField] private Transform mParentOfSpawnPoints;
     private Transform[] mSpawnPoints;
 
+    private Transform[,] mInstances;
+
     [SerializeField]
     private Transform[] mConnections = { null, null };
 
@@ -41,7 +43,30 @@ public class ConnectPipeModule : IModule
     {
         mSpawnPoints = mParentOfSpawnPoints.GetComponentsInChildren<Transform>().Where(t => t != mParentOfSpawnPoints).ToArray();
 
+        InitPuzzle();;
+    }
+
+    protected override void InitPuzzle()
+    {
+        mInstances = new Transform[mRows, mColumns];
         GenerateSolution();
+    }
+
+    protected override void DestroyPuzzle()
+    {
+        for (int y = 0; y < mColumns; y++)
+        {
+            for (int x = 0; x < mRows; x++)
+            {
+                SolutionNode node = mSolution[x, y];
+                if (!node.partOfSolution)
+                {
+                    continue;
+                }
+
+                Destroy(mInstances[x,y].gameObject);
+            }
+        }
     }
 
     public void PipeInCorrectPosition()
@@ -173,6 +198,7 @@ public class ConnectPipeModule : IModule
 
                 Transform instance = Instantiate(node.prefab, spawnPoint.position, Quaternion.identity, spawnPoint);
                 instance.GetComponent<Pipe>().Init(this, node.rotation, node.prefab == mConnections[1]);
+                mInstances[x, y] = instance;
             }
         }
     }
