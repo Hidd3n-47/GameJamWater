@@ -1113,7 +1113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_Volume
-      value: 0.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_Resource
@@ -1134,6 +1134,10 @@ PrefabInstance:
     - target: {fileID: 152997376137271630, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.16199994
+      objectReference: {fileID: 0}
+    - target: {fileID: 804894297473481624, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: mDisabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 804894297473481624, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: mDecayRate
@@ -1491,7 +1495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_Volume
-      value: 0.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_Resource
@@ -1512,6 +1516,10 @@ PrefabInstance:
     - target: {fileID: 152997376137271630, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.12699997
+      objectReference: {fileID: 0}
+    - target: {fileID: 804894297473481624, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: mDisabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 804894297473481624, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: mDecayRate
@@ -1953,7 +1961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_Volume
-      value: 0.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_Resource
@@ -4648,7 +4656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &454087393
 Transform:
   m_ObjectHideFlags: 0
@@ -6711,7 +6719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &783477584
 Transform:
   m_ObjectHideFlags: 0
@@ -6769,7 +6777,7 @@ MonoBehaviour:
   mTheInbetween: 2
   mMatWhite: {fileID: 2100000, guid: 58c49dbfe42d38e4899ab30db0c6794c, type: 2}
   mMatGreen: {fileID: 2100000, guid: a3ba1e8d3b7d9aa4f9ae4d3a200aa6b1, type: 2}
-  mPlayAudio: 1
+  mPlayAudio: 0
   mRinging: {fileID: 783477588}
   mVoiceOver: {fileID: 783477586}
   mEndCall: {fileID: 783477587}
@@ -6783,8 +6791,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e175e953285a5c140b2e64f9021c8278, type: 3}
-  m_Resource: {fileID: 8300000, guid: e175e953285a5c140b2e64f9021c8278, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 64caec4ee7d7df6448806eb00493bb8e, type: 3}
+  m_Resource: {fileID: 8300000, guid: 64caec4ee7d7df6448806eb00493bb8e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
@@ -12297,7 +12305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_Volume
-      value: 0.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 45446933229368695, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_Resource
@@ -12322,6 +12330,10 @@ PrefabInstance:
     - target: {fileID: 152997376137271630, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.21599996
+      objectReference: {fileID: 0}
+    - target: {fileID: 804894297473481624, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
+      propertyPath: mDisabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 804894297473481624, guid: 576ea1bbaee779240a1a574b97ecbf31, type: 3}
       propertyPath: mDecayRate
