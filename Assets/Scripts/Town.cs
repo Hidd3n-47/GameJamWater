@@ -16,6 +16,11 @@ public class Town : MonoBehaviour
     [SerializeField]
     float mRedPercent = 25.0f;
 
+    [SerializeField]
+    private bool mDisabled;
+    [SerializeField]
+    private Material mDisabledTexture;
+
     private TownLightMaterials mMaterials;
 
     public bool CanFix => mPercentage <= mYellowPercent;
@@ -37,11 +42,27 @@ public class Town : MonoBehaviour
             mLightTransform = gameObject.transform.parent;
         }
 
+        if (mDisabled)
+        {
+            var materials = mLightTransform.GetComponent<MeshRenderer>().materials;
+            materials[1] = mDisabledTexture;
+            mLightTransform.GetComponent<MeshRenderer>().materials = materials;
+
+            mLightTransform.GetChild(0).gameObject.SetActive(false);
+
+            return;
+        }
+
         mMaterials = GameObject.Find("TownLightMaterials").GetComponent<TownLightMaterials>();
     }
 
     private void Update()
     {
+        if (mDisabled)
+        {
+            return;
+        }
+
         mPercentage -= mDecayRate * Time.deltaTime;
 
         if (mPercentage > mYellowPercent)
