@@ -7,6 +7,9 @@ public class pauseScript : MonoBehaviour
 
     private bool mPaused = false;
 
+    public GameObject mainMusic;
+    public GameObject ticking;
+
     // Update is called once per frame
     void Update()
     {
@@ -16,11 +19,17 @@ public class pauseScript : MonoBehaviour
             {
                 Time.timeScale = 1.0f;
                 pauseUI.SetActive(false);
+
+                mainMusic.SetActive(false);
+                ticking.GetComponents<AudioSource>()[1].Pause();
             }
             else
             {
                 Time.timeScale = 0.0f;
                 pauseUI.SetActive(true);
+
+                mainMusic.SetActive(true);
+                ticking.GetComponents<AudioSource>()[1].Play();
             }
 
             mPaused = !mPaused;

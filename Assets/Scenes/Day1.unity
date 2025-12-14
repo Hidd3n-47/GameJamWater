@@ -6211,6 +6211,11 @@ MonoBehaviour:
   green: {fileID: 2100000, guid: a3ba1e8d3b7d9aa4f9ae4d3a200aa6b1, type: 2}
   yellow: {fileID: 2100000, guid: 0c8a54a37ca6c364694a72499d549146, type: 2}
   red: {fileID: 2100000, guid: 7936be1885c60ce46abf9ff1e394ddfa, type: 2}
+--- !u!1 &688308890 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2641994234267048416, guid: adc2ac5c5f139ed42a25eb76dcd71ce0, type: 3}
+  m_PrefabInstance: {fileID: 116430592}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &694898295
 GameObject:
   m_ObjectHideFlags: 0
@@ -7441,6 +7446,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseUI: {fileID: 433603610}
+  mainMusic: {fileID: 1699554285}
+  ticking: {fileID: 688308890}
 --- !u!1 &885155609
 GameObject:
   m_ObjectHideFlags: 0
