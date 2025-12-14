@@ -37,11 +37,31 @@ public class DisableLightsOnStart : MonoBehaviour
         }
     }
 
-    private void PlayVoiceLine()
+    private IEnumerator PlayVoiceLine()
     {
-        if(mRinging.clip) mRinging.Play();
-        if (mVoiceOver.clip) mVoiceOver.Play();
-        if (mEndCall.clip) mEndCall.Play();
+        mRinging.Play();
+        float timer = 0.0f;
+        while (timer < mRinging.clip.length)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        timer = 0.0f;
+        mVoiceOver.Play();
+        while (timer < mRinging.clip.length)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        timer = 0.0f;
+        mEndCall.Play();
+        while (timer < mRinging.clip.length)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
     }
 
     private IEnumerator help()
@@ -72,14 +92,14 @@ public class DisableLightsOnStart : MonoBehaviour
 
         if (mPlayAudio)
         {
-            PlayVoiceLine();
+            yield return PlayVoiceLine();
         }
 
-        float addedtime = mPlayAudio ? mRinging.clip.length + mVoiceOver.clip.length + mEndCall.clip.length : 0.0f;
+        //float addedtime = mPlayAudio ? mRinging.clip.length + mVoiceOver.clip.length + mEndCall.clip.length : 0.0f;
 
         float asdfa = 0.0f;
 
-        while (asdfa < mTheInbetween + addedtime)
+        while (asdfa < mTheInbetween)
         {
             asdfa += Time.deltaTime;
             yield return null;
