@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(AudioSource))]
 public class DisableLightsOnStart : MonoBehaviour
@@ -31,10 +33,31 @@ public class DisableLightsOnStart : MonoBehaviour
     [SerializeField] private AudioSource mVoiceOver;
     [SerializeField] private AudioSource mEndCall;
 
+    private bool playingAudio = false;
+
     private void Start()
     {
         {
             StartCoroutine(help());
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && playingAudio)
+        {
+            StopAllCoroutines();
+
+            if (mPlayAudio)
+            {
+                mRinging.Stop();
+                mVoiceOver.Stop();
+                mEndCall.Stop();
+            }
+
+            Destroy(letThereBeLightsBet.gameObject);
+            letThereBeLights.gameObject.SetActive(true);
+            Destroy(gameObject);
         }
     }
 
@@ -93,6 +116,7 @@ public class DisableLightsOnStart : MonoBehaviour
 
         if (mPlayAudio)
         {
+            playingAudio = true;
             yield return PlayVoiceLine();
         }
 
@@ -110,6 +134,4 @@ public class DisableLightsOnStart : MonoBehaviour
         f.gameObject.SetActive(true);
         Destroy(gameObject);
     }
-
-
 }
