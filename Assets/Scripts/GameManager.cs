@@ -166,6 +166,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GameLost()
     {
+        Time.timeScale = 0.0f;
         float timer = 0.0f;
         mEndAudio.Play();
         while (timer < mEndAudio.clip.length)
